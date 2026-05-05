@@ -1,0 +1,98 @@
+---
+import { Globe, Code, Search, Zap, Wrench, Lightbulb } from "@lucide/astro";
+
+const services = [
+  {
+    icon: Globe,
+    title: "Diseño Web",
+    description:
+      "Diseñamos sitios web modernos y plataformas interactivas, adaptadas para destacar la identidad y objetivos de tu negocio.",
+  },
+  {
+    icon: Code,
+    title: "Desarrollo de Software",
+    description:
+      "Creamos plataformas internas, herramientas de gestión y aplicaciones web a medida, garantizando escalabilidad y seguridad.",
+  },
+  {
+    icon: Search,
+    title: "Optimización SEO",
+    description:
+      "Mejoramos tu visibilidad en buscadores como Google para atraer tráfico relevante y aumentar conversiones.",
+  },
+  {
+    icon: Zap,
+    title: "Rendimiento Web",
+    description:
+      "Aceleramos la velocidad de carga y optimizamos la experiencia de usuario para maximizar el engagement.",
+  },
+  {
+    icon: Wrench,
+    title: "Mantenimiento Integral",
+    description:
+      "Ofrecemos soporte técnico proactivo, actualizaciones, backups y resolución de incidencias 24/7.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Consultoría Tecnológica",
+    description:
+      "Asesoramos en procesos de digitalización, estrategias IT y adopción de herramientas innovadoras.",
+  },
+];
+---
+
+<section
+  id="services"
+  class="py-20 md:py-32 bg-surface relative overflow-hidden"
+>
+  <div
+    class="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-primary/20 to-transparent"
+  >
+  </div>
+  <div class="absolute inset-0 z-0 pointer-events-none">
+    <div
+      class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[60%] h-[50%] bg-primary/5 blur-[120px] rounded-full"
+    >
+    </div>
+  </div>
+
+  <div class="container mx-auto px-6 lg:px-12 relative z-10">
+    <div
+      class="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-20 gap-8 animate-on-scroll"
+    >
+      <div class="max-w-2xl">
+        <span
+          class="text-primary font-bold tracking-widest text-xs md:text-sm uppercase mb-4 block"
+          >Nuestros Servicios</span
+        >
+        <h2
+          class="text-3xl md:text-5xl font-bold text-base-content tracking-tight"
+        >
+          Lo que necesitas para tu ecosistema digital.
+        </h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {
+        services.map((service) => (
+          <div class="relative bg-white border border-base-300 hover:border-transparent p-8 md:p-10 rounded-3xl group hover:bg-primary/5 transition-all duration-500 shadow-sm hover:shadow-md animate-on-scroll">
+            <div
+              class="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+              style="padding:2px;background:linear-gradient(to bottom right, var(--color-primary), var(--color-secondary));-webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude"
+            />
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary/20 transition-colors">
+              <service.icon class="w-7 h-7 md:w-8 md:h-8 text-primary" />
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold text-base-content mb-4 transition-colors">
+              {service.title}
+            </h3>
+            <p class="text-sm md:text-base text-base-content/60 leading-relaxed transition-colors">
+              {service.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
