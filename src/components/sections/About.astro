@@ -24,10 +24,15 @@
             <div class="absolute inset-0 bg-primary/5 rounded-full blur-3xl">
             </div>
             <img
-              src="/world.png"
+              src="/world.webp"
               alt="Globe"
+              width="500"
+              height="500"
+              sizes="(max-width: 768px) 364px, 500px"
+              srcset="/world-364.webp 364w, /world.webp 500w"
               class="w-full h-auto drop-shadow-2xl relative z-10"
               loading="eager"
+              fetchpriority="high"
             />
           </div>
           <div
