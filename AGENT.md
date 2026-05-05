@@ -6,12 +6,16 @@ Clone of [gluonex.cl](https://gluonex.cl) built with Astro. The original site is
 
 **Main objective**: Speed above all. The site must be mostly static files with minimal JavaScript.
 
+## Design System
+
+**See `DESIGN.md`** for the complete visual design system (colors, typography, components, patterns). Any new page or component MUST follow the patterns documented there.
+
 ## Tech Stack
 
 | Layer      | Technology               | Notes                                     |
 | ---------- | ------------------------ | ----------------------------------------- |
 | Framework  | Astro 6                  | Static-first, islands architecture        |
-| UI Library | DaisyUI + Tailwind CSS 4 | Colors via `globals.css` extracted from logo, never hardcoded |
+| UI Library | Tailwind CSS 4            | Colors via `globals.css` extracted from logo, never hardcoded |
 | Icons      | Lucide                   | Consistency and tree-shaking              |
 | Animations | Motion One (~5kb)        | Lightweight alternative to Framer Motion  |
 | Forms      | WhatsApp redirect        | No email sending, no backend              |
@@ -22,7 +26,6 @@ Clone of [gluonex.cl](https://gluonex.cl) built with Astro. The original site is
 ```
 src/
 ├── components/
-│   ├── ui/           # Customized DaisyUI base components
 │   ├── sections/     # Page sections (Hero, About, Services, Contact, Footer)
 │   └── icons/        # Lucide icons wrapper if needed
 ├── layouts/
@@ -30,7 +33,7 @@ src/
 ├── pages/
 │   └── index.astro   # SPA - entire website in one page
 ├── styles/
-│   └── globals.css   # DaisyUI theme + Tailwind customizations
+│   └── globals.css   # Tailwind theme customizations
 ├── assets/
 │   └── images/       # Logo, screenshots, etc.
 └── lib/
@@ -57,7 +60,7 @@ src/
 
 ### Theme and Colors
 
-**NEVER hardcode colors**. Always use DaisyUI or Tailwind variables:
+**NEVER hardcode colors**. Always use Tailwind theme variables:
 
 ```astro
 <!-- ✅ Correct -->
@@ -73,15 +76,12 @@ Define theme colors in `globals.css` (extracted from logo):
 
 ```css
 @import "tailwindcss";
-@plugin "daisyui" {
-  themes: gluonex --default;
-}
 
 @theme {
-  --color-primary: #7E95A8;    /* Soft steel blue (from "EX" in logo) */
-  --color-secondary: #C9A84C;  /* Champagne gold (from circle ring) */
-  --color-accent: #1C1C1C;     /* Dark charcoal (from "Gluon" text) */
-  --color-neutral: #1C1C1C;
+  --color-primary: #a99b73;    /* Gold - from "EX" in logo */
+  --color-secondary: #475a68;  /* Slate blue - from logo accents */
+  --color-accent: #1c1c1c;     /* Near-black - from "Gluon" text */
+  --color-base-content: #1c1c1c;
   /* ... rest of theme */
 }
 ```
@@ -109,7 +109,7 @@ interface Props {
 const { title, description } = Astro.props;
 ---
 
-<!-- 4. HTML template with Tailwind + DaisyUI classes -->
+<!-- 4. HTML template with Tailwind classes -->
 <section class="py-20 bg-base-100">
   <div class="container mx-auto px-4">
     <h2 class="text-4xl font-bold text-base-content">{title}</h2>
@@ -136,7 +136,7 @@ const baseMessage = 'Hi GluonEX, I would like to quote a project.';
   href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(baseMessage)}`}
   target="_blank"
   rel="noopener noreferrer"
-  class="btn btn-primary"
+  class="bg-secondary text-white px-6 py-3 rounded-xl font-bold"
 >
   Contact via WhatsApp
 </a>
@@ -150,20 +150,20 @@ For forms with dynamic fields, use a small vanilla JS script (no React):
     type="text"
     name="nombre"
     placeholder="Your name"
-    class="input input-bordered w-full"
+    class="w-full bg-white border-b border-base-300 p-4 transition-all text-base-content focus:border-primary focus:outline-none"
   />
   <input
     type="text"
     name="empresa"
     placeholder="Company"
-    class="input input-bordered w-full"
+    class="w-full bg-white border-b border-base-300 p-4 transition-all text-base-content focus:border-primary focus:outline-none"
   />
   <textarea
     name="mensaje"
     placeholder="Tell us about your project"
-    class="textarea textarea-bordered w-full"
+    class="w-full bg-white border-b border-base-300 p-4 transition-all text-base-content focus:border-primary focus:outline-none resize-none"
   ></textarea>
-  <button type="submit" class="btn btn-primary w-full">
+  <button type="submit" class="cursor-pointer bg-secondary text-white w-full py-5 rounded-xl text-lg font-bold shadow-xl hover:bg-primary/90 transition-all">
     Send via WhatsApp
   </button>
 </form>
@@ -306,13 +306,13 @@ pnpm build
 # Production preview
 pnpm preview
 
-# Add DaisyUI (if not configured)
-pnpm add -D daisyui
+# Add Lucide (if not configured)
+pnpm add -D @lucide/astro
 ```
 
 ## Implementation Checklist
 
-- [ ] Configure DaisyUI with custom theme in globals.css
+- [ ] Configure Tailwind theme in globals.css
 - [ ] Install Lucide (lucide-astro for Astro icons)
 - [ ] Install Motion One
 - [ ] Create Layout.astro with complete meta tags

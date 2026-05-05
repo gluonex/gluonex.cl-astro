@@ -33,23 +33,27 @@ const WHATSAPP_NUMBER = "56973789128";
               <div class="space-y-2">
                 <label
                   class="text-sm font-bold text-base-content uppercase tracking-widest"
-                  >Nombre completo</label
                 >
+                  Nombre completo *
+                </label>
                 <input
                   class="w-full bg-white border-b border-base-300 p-4 transition-all text-base-content focus:border-primary focus:outline-none"
                   placeholder="Ej. Juan Pérez"
                   type="text"
                   name="nombre"
+                  required
+                  minlength="3"
                 />
               </div>
               <div class="space-y-2">
                 <label
                   class="text-sm font-bold text-base-content uppercase tracking-widest"
-                  >Empresa o Emprendimiento</label
                 >
+                  Empresa o Emprendimiento
+                </label>
                 <input
                   class="w-full bg-white border-b border-base-300 p-4 transition-all text-base-content focus:border-primary focus:outline-none"
-                  placeholder="Ej. Mi Negocio SPA"
+                  placeholder="Ej. Mi Negocio SPA (opcional)"
                   type="text"
                   name="empresa"
                 />
@@ -58,25 +62,30 @@ const WHATSAPP_NUMBER = "56973789128";
             <div class="space-y-2">
               <label
                 class="text-sm font-bold text-base-content uppercase tracking-widest"
-                >Email de contacto</label
               >
+                Email de contacto *
+              </label>
               <input
                 class="w-full bg-white border-b border-base-300 p-4 transition-all text-base-content focus:border-primary focus:outline-none"
                 placeholder="hola@tuempresa.cl"
                 type="email"
                 name="email"
+                required
               />
             </div>
             <div class="space-y-2">
               <label
                 class="text-sm font-bold text-base-content uppercase tracking-widest"
-                >Cuéntanos qué necesitas</label
               >
+                Cuéntanos qué necesitas *
+              </label>
               <textarea
                 name="mensaje"
                 class="w-full bg-white border-b border-base-300 p-4 focus:outline-none focus:border-primary transition-all text-base-content resize-none"
                 placeholder="Describe brevemente tu idea, problema actual o requerimiento..."
-                rows="4"></textarea>
+                rows="4"
+                required
+                minlength="10"></textarea>
             </div>
             <button
               class="cursor-pointer relative group bg-secondary text-white w-full py-5 rounded-xl text-lg font-bold shadow-xl hover:bg-primary/90 transition-all"
