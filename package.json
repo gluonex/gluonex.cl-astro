@@ -22,7 +22,6 @@
     "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
-    "daisyui": "^5.5.19",
     "wrangler": "^4.87.0"
   },
   "overrides": {

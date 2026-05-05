@@ -1,7 +1,4 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-  themes: gluonex --default;
-}
 
 @font-face {
   font-family: "Inter";
