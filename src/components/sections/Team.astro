@@ -1,0 +1,76 @@
+---
+const team = [
+  {
+    name: "Álvaro",
+    role: "Ing. Civil en Informática",
+    description: "Apasionado por la tecnología, me especializo en desarrollo web y móvil, creando soluciones innovadoras que impulsan el éxito de nuestros clientes.",
+    image: "/alvaro-gluonex.webp" 
+  },
+  {
+    name: "Alejandro",
+    role: "Ing. Civil en Informática",
+    description: "Diseño aplicaciones full stack equilibrando una arquitectura de alto rendimiento con una experiencia de usuario intuitiva, asegurando que cada decisión técnica contribuya directamente a la entrega de valor real.",
+    image: "/ale-gluonex.webp" 
+  },
+  {
+    name: "Anaís",
+    role: "Ing. Civil en Informática",
+    description: "",
+    image: "/anais-gluonex.webp" 
+  },
+  {
+    name: "Rocío",
+    role: "Ing. Civil en Informática",
+    description: "hola como estan",
+    image: "/rocio-gluonex.webp" 
+  }
+];
+---
+
+<section id="team" class="py-20 md:py-32 bg-surface relative overflow-hidden">
+  <div class="container mx-auto px-6 lg:px-12 relative z-10">
+    <div class="mb-16 md:mb-20 animate-on-scroll">
+      <span class="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-bold tracking-widest text-xs uppercase mb-6">
+        Sobre Nosotros
+      </span>
+      <h2 class="text-3xl md:text-5xl font-bold text-base-content tracking-tight">
+        El equipo detrás de la magia.
+      </h2>
+    </div>
+
+    <div class="flex flex-col md:flex-row w-full h-[800px] md:h-[500px] gap-3 animate-on-scroll">
+      {team.map((member) => (
+        <div
+          tabindex="0"
+          class="group relative flex-1 hover:flex-[4] focus-within:flex-[4] transition-[flex] duration-700 ease-out overflow-hidden rounded-2xl cursor-pointer"
+        >
+          <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
+            <img
+              src={member.image}
+              alt={member.name}
+              class="h-full w-auto max-w-none grayscale group-hover:grayscale-0 group-focus-within:grayscale-0 transition-colors duration-700 ease-in-out"
+            />
+          </div>
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 opacity-80 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+          <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-end pointer-events-none">
+            <h3 class="text-white text-2xl md:text-3xl font-bold tracking-tight mb-1 whitespace-nowrap">
+              {member.name}
+            </h3>
+
+            <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+              <div class="overflow-hidden">
+                <p class="text-primary font-bold text-xs md:text-sm uppercase tracking-widest mt-2 mb-3 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500 delay-150">
+                  {member.role}
+                </p>
+                <p class="text-white/80 text-sm md:text-base leading-relaxed opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500 delay-200">
+                  {member.description}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+</section> 
