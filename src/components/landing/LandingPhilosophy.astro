@@ -1,0 +1,94 @@
+---
+import { Shield, RefreshCw, Eye } from "@lucide/astro";
+
+const cards = [
+  {
+    colSpan: "md:col-span-2",
+    badge: "Regla #1",
+    icon: Shield,
+    title: "Calidad Real",
+    text: "No hacemos páginas mediocres. Cada proyecto que tomamos recibe el mismo nivel de atención y detalle, sin importar el tamaño. Si no estamos convencidos de que el resultado es bueno, no lo entregamos.",
+  },
+  {
+    colSpan: "",
+    badge: "Regla #2",
+    icon: RefreshCw,
+    title: "Revisiones Ilimitadas",
+    text: "Hacemos ajustes hasta que el resultado te convenza al 100%. Sin límite de rondas, sin costos extra por cambios.",
+  },
+  {
+    colSpan: "",
+    badge: "Regla #3",
+    icon: Eye,
+    title: "Transparencia Total",
+    text: "Sabes exactamente en qué etapa estamos, qué falta y cuándo termina. Sin sorpresas, sin letra chica.",
+  },
+];
+---
+
+<section
+  id="philosophy"
+  class="bg-base-200 py-20 md:py-32 relative overflow-hidden"
+>
+  <!-- Background orb -->
+  <div
+    class="absolute top-1/2 -right-32 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none"
+  ></div>
+
+  <!-- Section divider top -->
+  <div
+    class="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-primary/20 to-transparent"
+  ></div>
+
+  <!-- Content -->
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+
+    <!-- Section header -->
+    <div class="text-center mb-16 md:mb-20 animate-on-scroll">
+      <span class="text-primary font-bold tracking-widest text-xs uppercase mb-4 block">
+        Nuestra Filosofía
+      </span>
+      <h2 class="text-3xl md:text-5xl font-bold text-base-content tracking-tight">
+        Las Tres Reglas. Sin Excepciones.
+      </h2>
+    </div>
+
+    <!-- Bento grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+      {
+        cards.map((card) => (
+          <div
+            class={`relative bg-surface border border-base-300 hover:border-transparent p-8 md:p-10 rounded-3xl group hover:bg-primary/5 transition-all duration-500 shadow-sm hover:shadow-md overflow-hidden animate-on-scroll ${card.colSpan}`}
+          >
+            <!-- Gradient border on hover -->
+            <div
+              class="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+              style="padding:2px;background:linear-gradient(to bottom right, var(--color-primary), var(--color-secondary));-webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude"
+            />
+
+            <!-- Rule badge (top-right) -->
+            <span class="absolute top-6 right-6 text-[10px] font-bold tracking-widest uppercase text-primary/60 bg-primary/10 px-3 py-1 rounded-full">
+              {card.badge}
+            </span>
+
+            <!-- Content -->
+            <div class="relative z-10">
+              <!-- Icon box -->
+              <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                <card.icon class="w-7 h-7 text-primary" />
+              </div>
+
+              <h3 class="text-xl md:text-2xl font-bold text-base-content mb-4">
+                {card.title}
+              </h3>
+              <p class="text-sm md:text-base text-base-content/60 leading-relaxed">
+                {card.text}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+  </div>
+</section>

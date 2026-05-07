@@ -1,0 +1,136 @@
+---
+import { ChevronDown } from "@lucide/astro";
+
+const faqs = [
+  {
+    q: "¿Cuánto tarda el proceso completo?",
+    a: "Entre 7 y 10 días hábiles desde el kickoff hasta la publicación final. Esto incluye diseño, desarrollo, revisiones y entrega con dominio y hosting activos.",
+  },
+  {
+    q: "¿Qué pasa si no me gusta el diseño?",
+    a: "Hacemos revisiones ilimitadas hasta que el resultado te convenza al 100%. No avanzamos a la siguiente etapa sin tu aprobación explícita.",
+  },
+  {
+    q: "¿El código es realmente mío?",
+    a: "Sí, al 100%. Te entregamos el repositorio completo con todo el código fuente. No dependes de ninguna plataforma cerrada ni de nosotros para hacer cambios.",
+  },
+  {
+    q: "¿Qué pasa después del primer año con el hosting y dominio?",
+    a: "El primer año está incluido en el precio. Al término del año puedes renovar directamente con el proveedor (a precios de mercado) o migrar a donde prefieras, sin ningún costo adicional de nuestra parte.",
+  },
+  {
+    q: "¿Puedo pedir cambios después de la entrega?",
+    a: "Los primeros 30 días post-entrega incluyen soporte. Para cambios mayores después de ese período, te hacemos una cotización justa y transparente.",
+  },
+  {
+    q: "¿En qué tecnología está construida la landing?",
+    a: "Usamos tecnología web moderna (Astro + Tailwind CSS), lo que garantiza velocidad máxima, SEO óptimo y bajo costo de mantenimiento. Nada de WordPress ni page builders lentos.",
+  },
+  {
+    q: "¿Puedo agregar más páginas después?",
+    a: "Sí. Este plan cubre una landing page de una sola sección. Si necesitas un sitio multipágina, te hacemos una propuesta a medida sin problema.",
+  },
+  {
+    q: "¿Cómo empezamos?",
+    a: "Escríbenos por WhatsApp o email. En menos de 24 horas coordinamos el kickoff y comenzamos el proceso.",
+  },
+];
+---
+
+<section id="faq" class="bg-base-200 py-20 md:py-32 relative overflow-hidden">
+  <!-- Section divider top -->
+  <div
+    class="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-primary/20 to-transparent"
+  >
+  </div>
+
+  <!-- Background orb -->
+  <div
+    class="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none"
+  >
+  </div>
+
+  <!-- Content -->
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-16 animate-on-scroll">
+      <span
+        class="text-primary font-bold tracking-widest text-xs uppercase mb-4 block"
+        >FAQ</span
+      >
+      <h2
+        class="text-3xl md:text-5xl font-bold text-base-content tracking-tight"
+      >
+        Preguntas Honestas.
+      </h2>
+      <p class="text-base-content/50 text-sm md:text-base mt-4">
+        Si tienes una que no está aquí, escríbenos.
+      </p>
+    </div>
+
+    <!-- Accordion -->
+    <div class="max-w-3xl mx-auto space-y-4">
+      {
+        faqs.map((faq) => (
+          <div class="faq-item bg-surface border border-base-300 rounded-2xl overflow-hidden animate-on-scroll transition-all duration-300">
+            <button
+              class="faq-toggle w-full flex items-center justify-between p-6 text-left cursor-pointer group"
+              aria-expanded="false"
+            >
+              <h3 class="text-base md:text-lg font-bold text-base-content pr-4 group-hover:text-primary transition-colors">
+                {faq.q}
+              </h3>
+              <ChevronDown class="w-5 h-5 text-base-content/40 shrink-0 transition-transform duration-300 group-hover:text-primary" />
+            </button>
+            <div
+              class="faq-answer overflow-hidden transition-all duration-300"
+              style="max-height: 0;"
+            >
+              <p class="px-6 pb-6 text-sm md:text-base text-base-content/60 leading-relaxed">
+                {faq.a}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.querySelectorAll(".faq-toggle").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var item = btn.closest(".faq-item");
+      var answer = item.querySelector(".faq-answer");
+      var icon = btn.querySelector("svg");
+      var isOpen = btn.getAttribute("aria-expanded") === "true";
+
+      // Close all others
+      document.querySelectorAll(".faq-item").forEach(function (other) {
+        if (other !== item) {
+          var otherBtn = other.querySelector(".faq-toggle");
+          var otherAnswer = other.querySelector(".faq-answer");
+          var otherIcon = otherBtn.querySelector("svg");
+          otherBtn.setAttribute("aria-expanded", "false");
+          otherAnswer.style.maxHeight = "0";
+          if (otherIcon) otherIcon.style.transform = "rotate(0deg)";
+          other.classList.remove("border-primary/30");
+          other.classList.add("border-base-300");
+        }
+      });
+
+      // Toggle current
+      btn.setAttribute("aria-expanded", String(!isOpen));
+      answer.style.maxHeight = isOpen ? "0" : answer.scrollHeight + "px";
+      if (icon)
+        icon.style.transform = isOpen ? "rotate(0deg)" : "rotate(180deg)";
+      if (!isOpen) {
+        item.classList.add("border-primary/30");
+        item.classList.remove("border-base-300");
+      } else {
+        item.classList.remove("border-primary/30");
+        item.classList.add("border-base-300");
+      }
+    });
+  });
+</script>

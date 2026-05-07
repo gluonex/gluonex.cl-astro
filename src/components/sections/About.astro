@@ -1,5 +1,5 @@
 ---
-
+import GlobeIcon from "./assets/GlobeIcon.astro";
 ---
 
 <section id="about" class="py-20 md:py-32 bg-base-200 relative overflow-hidden">
@@ -21,20 +21,11 @@
       >
         <div class="relative w-full max-w-lg">
           <div class="relative">
-            <div class="absolute inset-0 bg-primary/5 rounded-full blur-3xl">
-            </div>
-            <img
-              src="/world.webp"
-              alt="Globe"
-              width="500"
-              height="500"
-              class="w-full h-auto drop-shadow-2xl relative z-10"
-              loading="eager"
-              fetchpriority="high"
-            />
+            <div class="absolute inset-0"></div>
+            <GlobeIcon class="text-secondary dark:text-primary" />
           </div>
           <div
-            class="absolute -bottom-6 -right-2 md:-bottom-12 md:-right-8 z-20 bg-white/70 p-6 md:p-8 rounded-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.08),inset_0_1px_1px_rgba(255,255,255,0.4)] backdrop-blur-xl border border-white/50 max-w-[16rem] md:max-w-xs"
+            class="absolute -bottom-6 -right-2 md:-bottom-12 md:-right-8 z-20 bg-surface/70 dark:bg-base-100/80 p-6 md:p-8 rounded-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.08),inset_0_1px_1px_rgba(255,255,255,0.4)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.1)] backdrop-blur-xl border border-white/50 dark:border-base-300/50 max-w-[16rem] md:max-w-xs"
           >
             <p
               class="text-base-content font-medium text-base md:text-lg leading-snug"
@@ -92,7 +83,9 @@
         <div class="mt-16 pt-12 border-t border-base-300">
           <div class="flex gap-8 md:gap-16">
             <div>
-              <div class="text-5xl md:text-6xl font-light text-secondary mb-2">
+              <div
+                class="text-5xl md:text-6xl font-light text-secondary dark:text-primary mb-2"
+              >
                 +3
               </div>
               <div
@@ -102,7 +95,9 @@
               </div>
             </div>
             <div>
-              <div class="text-5xl md:text-6xl font-light text-secondary mb-2">
+              <div
+                class="text-5xl md:text-6xl font-light text-secondary dark:text-primary mb-2"
+              >
                 100%
               </div>
               <div

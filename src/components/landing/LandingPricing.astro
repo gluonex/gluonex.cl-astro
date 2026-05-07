@@ -1,0 +1,143 @@
+---
+import { Check, Shield } from "@lucide/astro";
+
+const features = [
+  "Diseño 100% a medida (sin templates)",
+  "Dominio .cl o .com incluido por 1 año",
+  "Hosting incluido por 12 meses",
+  "SEO técnico optimizado desde el día 1",
+  "Código fuente 100% de tu propiedad",
+  "Contenido redactado y estructurado para convertir",
+  "Responsive (adaptado a móvil, tablet y desktop)",
+  "Revisiones ilimitadas hasta tu aprobación",
+  "Integración con WhatsApp, redes sociales y Google Maps",
+  "Soporte post-entrega durante 30 días",
+] as const;
+
+const whatsappHref =
+  "https://wa.me/56973789128?text=Hola%20GluonEX%2C%20quiero%20contratar%20el%20servicio%20de%20Landing%20Page%20por%20%24119.990%20%2B%20IVA.";
+---
+
+<section
+  id="pricing"
+  class="bg-surface py-20 md:py-32 relative overflow-hidden"
+>
+  <!-- Background orbs -->
+  <div
+    class="absolute top-1/4 -right-32 w-150 h-150 bg-primary/5 rounded-full blur-[120px] pointer-events-none"
+  >
+  </div>
+  <div
+    class="absolute bottom-1/4 -left-32 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none"
+  >
+  </div>
+
+  <!-- Section divider top -->
+  <div
+    class="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-primary/20 to-transparent"
+  >
+  </div>
+
+  <!-- Content -->
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-16 animate-on-scroll">
+      <span
+        class="text-primary font-bold tracking-widest text-xs uppercase mb-4 block"
+      >
+        Pricing
+      </span>
+      <h2
+        class="text-3xl md:text-5xl font-bold text-base-content tracking-tight"
+      >
+        Un Solo Plan. Cero Ambigüedad.
+      </h2>
+      <p class="text-base-content/50 text-sm md:text-base mt-4">
+        Sin opciones confusas ni extras escondidos. Un precio, todo incluido.
+      </p>
+    </div>
+
+    <!-- Pricing card -->
+    <div class="relative max-w-2xl mx-auto animate-on-scroll">
+      <!-- Glow background effect -->
+      <div
+        class="absolute -inset-4 bg-linear-to-br from-primary/20 via-transparent to-secondary/20 rounded-[2.5rem] blur-2xl opacity-50 pointer-events-none"
+      >
+      </div>
+
+      <!-- Main card -->
+      <div
+        class="relative bg-surface border-2 border-primary/30 rounded-3xl overflow-hidden shadow-[0_80px_100px_-30px_rgba(71,90,104,0.12)]"
+      >
+        <!-- Card header with gradient -->
+        <div
+          class="bg-linear-to-br from-secondary to-secondary/80 p-8 md:p-12 text-white text-center relative overflow-hidden"
+        >
+          <!-- Decorative orb inside header -->
+          <div
+            class="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2 pointer-events-none"
+          >
+          </div>
+
+          <span
+            class="relative inline-block bg-white/20 text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4 border border-white/30"
+          >
+            Plan Único
+          </span>
+          <h3 class="relative text-2xl md:text-3xl font-bold mb-2">
+            Landing Page GluonEX
+          </h3>
+          <div class="relative flex items-baseline justify-center gap-2 mt-4">
+            <span class="text-5xl md:text-6xl font-extrabold">$119.990</span>
+            <span class="text-lg text-white/70 font-medium">+ IVA</span>
+          </div>
+          <p class="relative text-sm text-white/60 mt-3">
+            Pago único. Sin mensualidades. Sin contratos.
+          </p>
+        </div>
+
+        <!-- Features list + CTA -->
+        <div class="p-8 md:p-12">
+          <ul class="space-y-4 mb-8">
+            {
+              features.map((feature) => (
+                <li class="flex items-start gap-3">
+                  <Check class="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                  <span class="text-base-content/80 text-sm md:text-base">
+                    {feature}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+
+          <!-- CTA button -->
+          <a
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block w-full bg-secondary text-white py-5 rounded-xl text-lg font-bold text-center shadow-2xl hover:scale-[1.02] transition-transform"
+          >
+            Empezar Ahora →
+          </a>
+
+          <!-- Trust badges -->
+          <div class="flex flex-wrap justify-center gap-4 mt-6">
+            <span
+              class="text-xs text-base-content/40 flex items-center gap-1.5"
+            >
+              <Shield class="w-3 h-3" />
+              Sin contratos de permanencia
+            </span>
+            <span class="text-xs text-base-content/40">·</span>
+            <span class="text-xs text-base-content/40">Código 100% tuyo</span>
+            <span class="text-xs text-base-content/40">·</span>
+            <span class="text-xs text-base-content/40"
+              >Entrega en 7-10 días</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

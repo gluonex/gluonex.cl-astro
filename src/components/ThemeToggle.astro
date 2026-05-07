@@ -1,0 +1,48 @@
+---
+import { Sun, Moon } from "@lucide/astro";
+---
+
+<div class="fixed bottom-6 right-6 z-50">
+  <button
+    id="theme-toggle"
+    aria-label="Cambiar modo de color"
+    title="Cambiar modo de color"
+    class="flex items-center justify-center w-12 h-12 rounded-full bg-base-200/90 border border-base-300 text-base-content shadow-lg backdrop-blur-md hover:bg-base-300 hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+  >
+    <Moon id="icon-moon" class="w-5 h-5" />
+    <Sun id="icon-sun" class="w-5 h-5 hidden" />
+  </button>
+</div>
+
+<script is:inline>
+  (function () {
+    var toggle = document.getElementById("theme-toggle");
+    var iconMoon = document.getElementById("icon-moon");
+    var iconSun = document.getElementById("icon-sun");
+
+    // Set correct icon on page load based on current theme
+    if (document.documentElement.classList.contains("dark")) {
+      iconMoon.classList.add("hidden");
+      iconSun.classList.remove("hidden");
+    } else {
+      iconMoon.classList.remove("hidden");
+      iconSun.classList.add("hidden");
+    }
+
+    toggle.addEventListener("click", function () {
+      var html = document.documentElement;
+      html.classList.toggle("dark");
+      var isDark = html.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+
+      // Swap icons
+      if (isDark) {
+        iconMoon.classList.add("hidden");
+        iconSun.classList.remove("hidden");
+      } else {
+        iconMoon.classList.remove("hidden");
+        iconSun.classList.add("hidden");
+      }
+    });
+  })();
+</script>

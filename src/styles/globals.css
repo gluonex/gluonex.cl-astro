@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -8,6 +10,7 @@
   src: url("/fonts/inter-latin.woff2") format("woff2");
 }
 
+/* ─── Light Mode Tokens (default) ─── */
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
@@ -15,7 +18,7 @@
   --color-primary-content: #ffffff;
 
   --color-secondary: #475a68;
-  --color-secondary-content: #1a1a1a;
+  --color-secondary-content: #f0f0f0;
 
   --color-accent: #1c1c1c;
   --color-accent-content: #ffffff;
@@ -41,6 +44,40 @@
   --color-tertiary: #e5e5e5;
   --color-muted-foreground: #6b6b6b;
   --color-outline: #d4d4d4;
+}
+
+/* ─── Dark Mode Overrides (outside @layer for max specificity) ─── */
+.dark {
+  --color-primary: #b8a982;
+  --color-primary-content: #121212;
+
+  --color-secondary: #3d525e;
+  --color-secondary-content: #ffffff;
+
+  --color-accent: #f0f0f0;
+  --color-accent-content: #121212;
+
+  --color-neutral: #1e1e1e;
+  --color-neutral-content: #f0f0f0;
+
+  --color-base-100: #0d0d0d;
+  --color-base-200: #151515;
+  --color-base-300: #262626;
+  --color-base-content: #e5e5e5;
+
+  --color-info: #8faabb;
+  --color-success: #34d399;
+  --color-warning: #d4b85c;
+  --color-error: #f87171;
+
+  --color-surface: #0d0d0d;
+  --color-surface-variant: #151515;
+  --color-on-surface: #e5e5e5;
+  --color-on-primary: #121212;
+
+  --color-tertiary: #262626;
+  --color-muted-foreground: #9ca3af;
+  --color-outline: #333333;
 }
 
 @layer base {

@@ -1,0 +1,155 @@
+---
+import { Menu, X, ArrowLeft } from "@lucide/astro";
+---
+
+<header
+  class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-base-300/50 shadow-[0_4px_40px_-15px_rgba(0,0,0,0.05)]"
+>
+  <nav
+    class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between py-5"
+  >
+    <!-- Logo + Back Link -->
+    <div class="flex items-center gap-5 relative z-50">
+      <a href="/" aria-label="Ir a página principal">
+        <img
+          src="/logo-texto-light.webp"
+          alt="GluonEX Logo"
+          width="159"
+          height="40"
+          class="h-10 w-auto dark:hidden"
+        />
+        <img
+          src="/logo-texto-dark.webp"
+          alt="GluonEX Logo"
+          width="159"
+          height="40"
+          class="h-10 w-auto hidden dark:block"
+        />
+      </a>
+
+      <a
+        href="/"
+        class="group hidden sm:inline-flex items-center gap-1.5 text-xs text-base-content/40 hover:text-primary transition-colors font-medium"
+        aria-label="Volver a página principal"
+      >
+        <ArrowLeft
+          class="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform"
+        />
+        Página Principal
+      </a>
+    </div>
+
+    <!-- Desktop Nav -->
+    <div class="hidden lg:flex items-center space-x-8 xl:space-x-12">
+      <a
+        href="#hero-landing"
+        class="text-base-content hover:text-primary font-semibold tracking-tight transition-colors"
+        >Inicio</a
+      >
+      <a
+        href="#pricing"
+        class="text-base-content hover:text-primary font-semibold tracking-tight transition-colors"
+        >Precios</a
+      >
+      <a
+        href="#process"
+        class="text-base-content hover:text-primary font-semibold tracking-tight transition-colors"
+        >Proceso</a
+      >
+      <a
+        href="#faq"
+        class="text-base-content hover:text-primary font-semibold tracking-tight transition-colors"
+        >FAQ</a
+      >
+    </div>
+
+    <!-- Hamburger Button -->
+    <button
+      id="menu-toggle-landing"
+      class="lg:hidden relative z-50 text-base-content hover:text-primary transition-colors p-2"
+      aria-label="Alternar menú"
+    >
+      <Menu id="icon-open-landing" class="w-7 h-7" />
+      <X id="icon-close-landing" class="w-7 h-7 hidden" />
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile Menu Overlay -->
+<div
+  id="mobile-menu-landing"
+  class="lg:hidden fixed inset-0 top-18.25 bg-surface z-40 transform translate-x-full transition-transform duration-300 ease-out"
+>
+  <div class="flex flex-col items-center justify-start pt-12 space-y-8 px-6">
+    <!-- Back link visible in mobile menu too -->
+    <a
+      href="/"
+      class="group inline-flex items-center gap-2 text-sm text-base-content/40 hover:text-primary transition-colors font-medium mobile-nav-link-landing"
+    >
+      <ArrowLeft
+        class="w-4 h-4 group-hover:-translate-x-0.5 transition-transform"
+      />
+      Página Principal
+    </a>
+
+    <div class="w-full border-t border-base-300/50"></div>
+
+    <a
+      href="#hero-landing"
+      class="text-2xl text-base-content hover:text-primary font-semibold tracking-tight transition-colors mobile-nav-link-landing"
+      >Inicio</a
+    >
+    <a
+      href="#pricing"
+      class="text-2xl text-base-content hover:text-primary font-semibold tracking-tight transition-colors mobile-nav-link-landing"
+      >Precios</a
+    >
+    <a
+      href="#process"
+      class="text-2xl text-base-content hover:text-primary font-semibold tracking-tight transition-colors mobile-nav-link-landing"
+      >Proceso</a
+    >
+    <a
+      href="#faq"
+      class="text-2xl text-base-content hover:text-primary font-semibold tracking-tight transition-colors mobile-nav-link-landing"
+      >FAQ</a
+    >
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var toggle = document.getElementById("menu-toggle-landing");
+    var menu = document.getElementById("mobile-menu-landing");
+    var iconOpen = document.getElementById("icon-open-landing");
+    var iconClose = document.getElementById("icon-close-landing");
+    var isOpen = false;
+
+    function updateMenu(open) {
+      isOpen = open;
+      if (open) {
+        menu.classList.remove("translate-x-full");
+        menu.classList.add("translate-x-0");
+        iconOpen.classList.add("hidden");
+        iconClose.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      } else {
+        menu.classList.add("translate-x-full");
+        menu.classList.remove("translate-x-0");
+        iconOpen.classList.remove("hidden");
+        iconClose.classList.add("hidden");
+        document.body.style.overflow = "";
+      }
+    }
+
+    toggle.addEventListener("click", function () {
+      updateMenu(!isOpen);
+    });
+
+    document.querySelectorAll(".mobile-nav-link-landing").forEach(function (link) {
+      link.addEventListener("click", function () {
+        updateMenu(false);
+      });
+    });
+  })();
+</script>

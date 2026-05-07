@@ -1,5 +1,6 @@
 ---
 import "../styles/globals.css";
+import ThemeToggle from "../components/ThemeToggle.astro";
 
 interface Props {
   title?: string;
@@ -15,8 +16,26 @@ const {
 <!doctype html>
 <html lang="es" class="h-full">
   <head>
+    <script is:inline>
+      const theme = (() => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      })();
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      }
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
     <link rel="icon" type="image/png" href="/icon.png" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
@@ -37,5 +56,6 @@ const {
   </head>
   <body class="min-h-full flex flex-col">
     <slot />
+    <ThemeToggle />
   </body>
 </html>

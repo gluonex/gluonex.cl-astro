@@ -1,0 +1,109 @@
+---
+import Layout from "../layouts/Layout.astro";
+import LandingHeader from "../components/landing/LandingHeader.astro";
+import LandingHero from "../components/landing/LandingHero.astro";
+import LandingPhilosophy from "../components/landing/LandingPhilosophy.astro";
+import LandingFeatures from "../components/landing/LandingFeatures.astro";
+import LandingProcess from "../components/landing/LandingProcess.astro";
+import LandingPricing from "../components/landing/LandingPricing.astro";
+import LandingFAQ from "../components/landing/LandingFAQ.astro";
+import LandingCTA from "../components/landing/LandingCTA.astro";
+import LandingFooter from "../components/landing/LandingFooter.astro";
+---
+
+<Layout
+  title="Landing Page GluonEX | Tu web publicada en 7 días | $119.990"
+  description="Diseño web a medida para tu negocio. Sin templates, sin letra chica. Incluye dominio, hosting y SEO. Código 100% tuyo."
+>
+  <LandingHeader />
+  <main class="flex-1">
+    <LandingHero />
+    <LandingPhilosophy />
+    <LandingFeatures />
+    <LandingProcess />
+    <LandingPricing />
+    <LandingFAQ />
+    <LandingCTA />
+  </main>
+  <LandingFooter />
+
+  <!-- Sticky bottom CTA — aparece al salir del hero -->
+  <div
+    id="sticky-cta"
+    class="fixed bottom-0 inset-x-0 z-40 translate-y-full transition-transform duration-500"
+  >
+    <div
+      class="bg-surface/95 backdrop-blur-xl border-t border-base-300 shadow-[0_-10px_40px_-10px_rgba(0,0,0,0.1)] px-6 py-4"
+    >
+      <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+        <div class="hidden sm:block">
+          <p class="text-sm font-bold text-base-content">
+            Landing Page GluonEX
+          </p>
+          <p class="text-xs text-base-content/50">
+            $119.990 + IVA · Entrega en 7-10 días hábiles
+          </p>
+        </div>
+        <a
+          href="https://wa.me/56973789128?text=Hola%20GluonEX%2C%20quiero%20cotizar%20una%20Landing%20Page."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-secondary text-white px-6 py-3 rounded-xl font-bold text-sm hover:scale-105 transition-transform shadow-lg shrink-0"
+        >
+          Cotizar Ahora →
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script is:inline>
+  // Sticky CTA: aparece cuando el hero sale del viewport
+  (function () {
+    var sticky = document.getElementById("sticky-cta");
+    var hero = document.getElementById("hero-landing");
+    if (sticky && hero) {
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              sticky.classList.add("translate-y-full");
+              sticky.classList.remove("translate-y-0");
+            } else {
+              sticky.classList.remove("translate-y-full");
+              sticky.classList.add("translate-y-0");
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(hero);
+    }
+  })();
+</script>
+
+<script>
+  // Scroll reveal animations — mismo patrón que index.astro
+  import { animate } from "motion";
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animate(
+            entry.target as Element,
+            { opacity: [0, 1], y: [20, 0] },
+            { duration: 0.8, easing: "ease-out" }
+          );
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  document.querySelectorAll(".animate-on-scroll").forEach((el) => {
+    (el as HTMLElement).style.opacity = "0";
+    observer.observe(el);
+  });
+</script>
