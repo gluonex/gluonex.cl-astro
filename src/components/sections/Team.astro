@@ -4,7 +4,6 @@ import { Globe } from "@lucide/astro";
 const team = [
   {
     name: "Álvaro",
-    slug: "alvaro",
     role: "Ing. Civil en Informática",
     description:
       "Apasionado por la tecnología, me especializo en desarrollo web y móvil, creando soluciones innovadoras que impulsan el éxito de nuestros clientes.",
@@ -14,7 +13,6 @@ const team = [
   },
   {
     name: "Alejandro",
-    slug: "alejandro",
     role: "Ing. Civil en Informática",
     description:
       "Diseño aplicaciones full stack equilibrando un alto rendimiento con una experiencia de usuario intuitiva, contribuyendo directamente a la entrega de valor real.",
@@ -24,7 +22,6 @@ const team = [
   },
   {
     name: "Anaís",
-    slug: "anais",
     role: "Ing. Civil en Informática",
     description:
       "Diseño la arquitectura del software y optimizo el rendimiento. Me aseguro de que la base técnica de cada proyecto sea robusta, segura y escalable.",
@@ -33,7 +30,6 @@ const team = [
   },
   {
     name: "Rocío",
-    slug: "rocio",
     role: "Ing. Civil en Informática",
     description:
       "Desarrollo de software y diseño de interfaces. Combinando código escalable con un apartado visual atractivo.",
@@ -66,7 +62,6 @@ const team = [
         team.map((member) => (
           <div
             tabindex="0"
-            data-member={member.slug}
             class="group relative flex-1 hover:flex-[4] focus-within:flex-[4] transition-[flex] duration-700 ease-out overflow-hidden rounded-2xl cursor-pointer"
           >
             <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
@@ -131,41 +126,4 @@ const team = [
       }
     </div>
   </div>
-
-  <script is:inline>
-    document.addEventListener("DOMContentLoaded", function () {
-      const alvaroCard = document.querySelector('[data-member="alvaro"]');
-      if (!alvaroCard) return;
-
-      const audio = new Audio("/phonk.mp3");
-      audio.loop = true;
-      let audioUnlocked = false;
-
-      // Unlock audio on first user click (required by browser autoplay policy)
-      function unlockAudio() {
-        if (audioUnlocked) return;
-        audio
-          .play()
-          .then(function () {
-            audio.pause();
-            audio.currentTime = 0;
-            audioUnlocked = true;
-          })
-          .catch(function () {});
-      }
-
-      document.addEventListener("click", unlockAudio, { once: true });
-
-      alvaroCard.addEventListener("mouseenter", function () {
-        if (!audioUnlocked) return;
-        audio.currentTime = 0;
-        audio.play().catch(function () {});
-      });
-
-      alvaroCard.addEventListener("mouseleave", function () {
-        audio.pause();
-        audio.currentTime = 0;
-      });
-    });
-  </script>
 </section>
