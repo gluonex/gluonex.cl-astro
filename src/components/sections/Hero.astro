@@ -82,81 +82,75 @@
     position: absolute;
     border-radius: 50%;
     pointer-events: none;
-    /* Borde sutil por defecto para el modo claro */
-    border: 1px solid
-      color-mix(in srgb, var(--color-secondary) 40%, transparent);
   }
 
   /* Orb 1 — grande, inferior-izquierda */
   .hero-bg-orb-1 {
-    width: 680px;
-    height: 680px;
+    width: max(280px, 45vw);
+    height: max(280px, 45vw);
     bottom: -15%;
     left: -8%;
     background: radial-gradient(
       circle,
-      color-mix(in srgb, var(--color-secondary) 50%, transparent) 0%,
-      /* Mantiene el color sólido */ transparent 68%
-        /* Transición rápida = borde más duro */
+      color-mix(in srgb, var(--color-secondary) 25%, transparent) 0%,
+      transparent 70%
     );
-    filter: blur(50px); /* Blur muy reducido */
+    filter: blur(clamp(25px, 3vw, 50px));
     animation: hero-orb-pulse 8s ease-in-out infinite;
   }
 
   /* Orb 2 — pequeño, centro-izquierda */
   .hero-bg-orb-2 {
-    width: 260px;
-    height: 260px;
+    width: max(140px, 17vw);
+    height: max(140px, 17vw);
     top: 42%;
     left: 24%;
     background: radial-gradient(
       circle,
-      color-mix(in srgb, var(--color-secondary) 50%, transparent) 0%,
-      transparent 68%
+      color-mix(in srgb, var(--color-secondary) 20%, transparent) 0%,
+      transparent 70%
     );
-    filter: blur(50px);
+    filter: blur(clamp(20px, 2.5vw, 50px));
     animation: hero-orb-pulse 7s ease-in-out infinite alternate;
   }
 
   /* Orb 3 — grande, superior-derecha */
   .hero-bg-orb-3 {
-    width: 560px;
-    height: 560px;
+    width: max(240px, 37vw);
+    height: max(240px, 37vw);
     top: -12%;
     right: 14%;
     background: radial-gradient(
       circle,
-      color-mix(in srgb, var(--color-secondary) 50%, transparent) 0%,
-
-      transparent 68%
+      color-mix(in srgb, var(--color-secondary) 22%, transparent) 0%,
+      transparent 70%
     );
-    filter: blur(50px);
+    filter: blur(clamp(25px, 3vw, 55px));
     animation: hero-orb-pulse 10s ease-in-out infinite alternate-reverse;
   }
 
-  /* Orb 4 — muy grande, derecha (mezcla de colores) */
+  /* Orb 4 — muy grande, derecha (azul grisáceo dominante con toque dorado) */
   .hero-bg-orb-4 {
-    width: 760px;
-    height: 760px;
+    width: max(320px, 50vw);
+    height: max(320px, 50vw);
     top: 22%;
     right: -12%;
     background: radial-gradient(
       circle,
-      color-mix(in srgb, var(--color-secondary) 50%, transparent) 0%,
-
-      transparent 68%
+      color-mix(in srgb, var(--color-secondary) 28%, transparent) 0%,
+      color-mix(in srgb, var(--color-primary) 10%, transparent) 50%,
+      transparent 70%
     );
-    filter: blur(50px);
+    filter: blur(clamp(30px, 4vw, 60px));
     animation: hero-orb-pulse 12s ease-in-out infinite;
   }
 
-  /* ── Dark mode: opacidades más altas (fondo oscuro = colores más vívidos) */
+  /* ── Dark mode: primary (gold) a mayor opacidad ─── */
 
   .dark .hero-bg-orb-1 {
     background: radial-gradient(
       circle,
       color-mix(in srgb, var(--color-primary) 34%, transparent) 0%,
-
       transparent 70%
     );
   }
@@ -165,7 +159,6 @@
     background: radial-gradient(
       circle,
       color-mix(in srgb, var(--color-primary) 27%, transparent) 0%,
-
       transparent 70%
     );
   }
@@ -174,7 +167,6 @@
     background: radial-gradient(
       circle,
       color-mix(in srgb, var(--color-primary) 30%, transparent) 0%,
-
       transparent 70%
     );
   }
@@ -183,14 +175,12 @@
     background: radial-gradient(
       circle,
       color-mix(in srgb, var(--color-secondary) 24%, transparent) 0%,
-
       color-mix(in srgb, var(--color-primary) 19%, transparent) 45%,
-
       transparent 70%
     );
   }
 
-  /* Animación suave de respiración */
+  /* Animación suave de respiración — solo opacity, sin transform */
   @keyframes hero-orb-pulse {
     0%,
     100% {

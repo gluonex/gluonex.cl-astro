@@ -9,11 +9,9 @@ const { class: className } = Astro.props;
 <svg
   version="1.0"
   xmlns="http://www.w3.org/2000/svg"
-  width="500px"
-  height="500px"
   viewBox="0 0 500 500"
   preserveAspectRatio="xMidYMid meet"
-  class={className}
+  class={`w-full h-auto ${className ?? ""}`}
 >
   <g fill="currentColor">
     <path
