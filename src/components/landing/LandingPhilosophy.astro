@@ -1,94 +1,195 @@
 ---
-import { Shield, RefreshCw, Eye } from "@lucide/astro";
-
-const cards = [
-  {
-    colSpan: "md:col-span-2",
-    badge: "Regla #1",
-    icon: Shield,
-    title: "Calidad Real",
-    text: "No hacemos páginas mediocres. Cada proyecto que tomamos recibe el mismo nivel de atención y detalle, sin importar el tamaño. Si no estamos convencidos de que el resultado es bueno, no lo entregamos.",
-  },
-  {
-    colSpan: "",
-    badge: "Regla #2",
-    icon: RefreshCw,
-    title: "Revisiones Ilimitadas",
-    text: "Hacemos ajustes hasta que el resultado te convenza al 100%. Sin límite de rondas, sin costos extra por cambios.",
-  },
-  {
-    colSpan: "",
-    badge: "Regla #3",
-    icon: Eye,
-    title: "Transparencia Total",
-    text: "Sabes exactamente en qué etapa estamos, qué falta y cuándo termina. Sin sorpresas, sin letra chica.",
-  },
-];
+import { ShieldCheck, Eye, ThumbsUp } from "@lucide/astro";
 ---
 
 <section
   id="philosophy"
-  class="bg-base-200 py-20 md:py-32 relative overflow-hidden"
+  class="relative bg-base-200 py-24 md:py-32 overflow-hidden"
 >
-  <!-- Background orb -->
-  <div
-    class="absolute top-1/2 -right-32 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none"
-  ></div>
+  <!-- Background sutil -->
+  <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+    <div
+      class="absolute inset-0 opacity-[0.02] bg-[url(/noise.svg)] dark:opacity-[0.04]"
+    >
+    </div>
+  </div>
 
-  <!-- Section divider top -->
-  <div
-    class="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-primary/20 to-transparent"
-  ></div>
-
-  <!-- Content -->
-  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-
-    <!-- Section header -->
-    <div class="text-center mb-16 md:mb-20 animate-on-scroll">
-      <span class="text-primary font-bold tracking-widest text-xs uppercase mb-4 block">
-        Nuestra Filosofía
-      </span>
-      <h2 class="text-3xl md:text-5xl font-bold text-base-content tracking-tight">
-        Las Tres Reglas. Sin Excepciones.
-      </h2>
+  <div class="container mx-auto px-6 lg:px-12 relative z-10">
+    <!-- HEADER EDITORIAL -->
+    <div
+      class="flex flex-col lg:flex-row lg:items-end justify-between mb-16 lg:mb-24 gap-8 animate-fade-in-up"
+    >
+      <div class="max-w-3xl">
+        <span
+          class="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter uppercase leading-[0.95]"
+        >
+          Nuestra Filosofía
+        </span>
+      </div>
+      <div class="lg:w-1/3">
+        <p
+          class="text-lg lg:text-xl text-base-content/70 font-medium border-l-4 border-secondary dark:border-primary pl-6 py-1"
+        >
+          Tres pilares inquebrantables. Sin letra chica, sin contratos
+          engañosos.
+        </p>
+      </div>
     </div>
 
-    <!-- Bento grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-      {
-        cards.map((card) => (
-          <div
-            class={`relative bg-surface border border-base-300 hover:border-transparent p-8 md:p-10 rounded-3xl group hover:bg-primary/5 transition-all duration-500 shadow-sm hover:shadow-md overflow-hidden animate-on-scroll ${card.colSpan}`}
+    <!-- ============================================== -->
+    <!-- SWISS GRID CON INTERACTIVIDAD SUTIL            -->
+    <!-- ============================================== -->
+    <div
+      class="border-y border-base-content/10 bg-surface/30 dark:bg-base-100/30 transition-colors"
+    >
+      <!-- FILA 1: El Pilar Principal (Calidad) -->
+      <!-- "group" envuelve toda la fila para que ambas columnas reaccionen juntas -->
+      <div
+        class="group grid grid-cols-1 lg:grid-cols-12 border-b border-base-content/10 hover:bg-white/40 dark:hover:bg-base-100/60 transition-colors duration-500 ease-out"
+      >
+        <!-- Caja de Título -->
+        <div
+          class="lg:col-span-4 p-8 lg:p-16 border-b lg:border-b-0 lg:border-r border-base-content/10 flex flex-col justify-between relative"
+        >
+          <!-- Número: Sube ligeramente y aumenta opacidad -->
+          <span
+            class="text-[6rem] lg:text-[8rem] font-black leading-none text-secondary dark:text-primary mb-8 opacity-60 group-hover:opacity-100 group-hover:-translate-y-2 transition-all duration-500"
           >
-            <!-- Gradient border on hover -->
+            01
+          </span>
+          <div>
+            <!-- Acento de color: Se expande -->
             <div
-              class="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-              style="padding:2px;background:linear-gradient(to bottom right, var(--color-primary), var(--color-secondary));-webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude"
-            />
-
-            <!-- Rule badge (top-right) -->
-            <span class="absolute top-6 right-6 text-[10px] font-bold tracking-widest uppercase text-primary/60 bg-primary/10 px-3 py-1 rounded-full">
-              {card.badge}
-            </span>
-
-            <!-- Content -->
-            <div class="relative z-10">
-              <!-- Icon box -->
-              <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                <card.icon class="w-7 h-7 text-primary" />
-              </div>
-
-              <h3 class="text-xl md:text-2xl font-bold text-base-content mb-4">
-                {card.title}
-              </h3>
-              <p class="text-sm md:text-base text-base-content/60 leading-relaxed">
-                {card.text}
-              </p>
+              class="w-12 h-1.5 bg-secondary dark:bg-primary mb-6 group-hover:w-24 transition-all duration-500 ease-out"
+            >
             </div>
+            <h3
+              class="text-4xl lg:text-5xl font-black uppercase tracking-tighter text-base-content"
+            >
+              Calidad
+            </h3>
           </div>
-        ))
-      }
-    </div>
+        </div>
 
+        <!-- Caja de Texto Extendido -->
+        <div
+          class="lg:col-span-8 p-8 lg:p-16 flex items-center relative overflow-hidden"
+        >
+          <!-- Icono de fondo: Crece sutilmente -->
+          <ShieldCheck
+            class="absolute -right-12 -bottom-12 w-96 h-96 text-base-content/3 group-hover:text-base-content/6 group-hover:scale-105 transition-all duration-700 pointer-events-none"
+          />
+
+          <!-- Texto: Se ilumina (70% a 100%) -->
+          <p
+            class="text-2xl lg:text-4xl font-medium leading-snug text-base-content/70 group-hover:text-base-content transition-colors duration-500 relative z-10 max-w-3xl"
+          >
+            "No hacemos páginas mediocres. Cada proyecto recibe nuestra máxima
+            atención al detalle. Si no es un producto de <strong
+              class="text-base-content">excelencia técnica y visual</strong
+            >, no sale a producción."
+          </p>
+        </div>
+      </div>
+
+      <!-- FILA 2: Pilares 2 y 3 compartiendo espacio -->
+      <div class="grid grid-cols-1 lg:grid-cols-2">
+        <!-- Pilar 2: Transparencia -->
+        <div
+          class="group p-8 lg:p-16 border-b lg:border-b-0 lg:border-r border-base-content/10 flex flex-col relative overflow-hidden hover:bg-white/40 dark:hover:bg-base-100/60 transition-colors duration-500 ease-out"
+        >
+          <Eye
+            class="absolute -right-8 -bottom-8 w-64 h-64 text-base-content/3 group-hover:text-base-content/6 group-hover:scale-105 transition-all duration-700 pointer-events-none"
+          />
+
+          <div class="flex justify-between items-start mb-12 relative z-10">
+            <div>
+              <div
+                class="w-8 h-1.5 bg-secondary dark:bg-primary mb-6 group-hover:w-16 transition-all duration-500 ease-out"
+              >
+              </div>
+              <h3
+                class="text-3xl lg:text-4xl font-black uppercase tracking-tighter text-base-content"
+              >
+                Transparencia
+              </h3>
+            </div>
+            <span
+              class="text-[4rem] lg:text-[5rem] font-black leading-none opacity-60 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-500 -mt-2.5 text-secondary dark:text-primary"
+              >02</span
+            >
+          </div>
+
+          <p
+            class="text-xl lg:text-2xl font-medium text-base-content/70 group-hover:text-base-content/90 transition-colors duration-500 leading-relaxed relative z-10 mt-auto"
+          >
+            Visibilidad total del proceso. Sabes exactamente en qué etapa
+            estamos y los tiempos reales. <strong class="text-base-content"
+              >Cero letra chica, cero sorpresas.</strong
+            >
+          </p>
+        </div>
+
+        <!-- Pilar 3: Conformidad -->
+        <div
+          class="group p-8 lg:p-16 flex flex-col relative overflow-hidden hover:bg-white/40 dark:hover:bg-base-100/60 transition-colors duration-500 ease-out"
+        >
+          <ThumbsUp
+            class="absolute -right-8 -bottom-8 w-64 h-64 text-base-content/3 group-hover:text-base-content/6 group-hover:scale-105 transition-all duration-700 pointer-events-none"
+          />
+
+          <div class="flex justify-between items-start mb-12 relative z-10">
+            <div>
+              <div
+                class="w-8 h-1.5 bg-secondary dark:bg-primary mb-6 group-hover:w-16 transition-all duration-500 ease-out"
+              >
+              </div>
+              <h3
+                class="text-3xl lg:text-4xl font-black uppercase tracking-tighter text-base-content"
+              >
+                Conformidad
+              </h3>
+            </div>
+            <span
+              class="text-[4rem] lg:text-[5rem] font-black leading-none text-secondary dark:text-primary opacity-60 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-500 -mt-2.5"
+              >03</span
+            >
+          </div>
+
+          <p
+            class="text-xl lg:text-2xl font-medium text-base-content/70 group-hover:text-base-content/90 transition-colors duration-500 leading-relaxed relative z-10 mt-auto"
+          >
+            Iteramos y ajustamos el diseño hasta que el resultado te convenza al
+            100%. <strong class="text-base-content"
+              >Sin límite estricto de rondas</strong
+            > ni presupuestos inflados.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- FIN SWISS GRID -->
   </div>
 </section>
+
+<style is:global>
+  .text-stroke-secondary {
+    -webkit-text-stroke: 2px var(--color-secondary);
+  }
+  :is(.dark .text-stroke-primary) {
+    -webkit-text-stroke: 2px var(--color-primary);
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out both;
+  }
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

@@ -1,5 +1,5 @@
 ---
-import { Check, Shield } from "@lucide/astro";
+import { ArrowRight, ShieldCheck, Zap } from "@lucide/astro";
 
 const features = [
   "Diseño 100% a medida (sin templates)",
@@ -10,7 +10,7 @@ const features = [
   "Contenido redactado y estructurado para convertir",
   "Responsive (adaptado a móvil, tablet y desktop)",
   "Revisiones ilimitadas hasta tu aprobación",
-  "Integración con WhatsApp, redes sociales y Google Maps",
+  "Integración con WhatsApp, RRSS y Google Maps",
   "Soporte post-entrega durante 30 días",
 ] as const;
 
@@ -20,124 +20,156 @@ const whatsappHref =
 
 <section
   id="pricing"
-  class="bg-surface py-20 md:py-32 relative overflow-hidden"
+  class="relative bg-base-200 py-24 md:py-32 overflow-hidden"
 >
-  <!-- Background orbs -->
-  <div
-    class="absolute top-1/4 -right-32 w-150 h-150 bg-primary/5 rounded-full blur-[120px] pointer-events-none"
-  >
-  </div>
-  <div
-    class="absolute bottom-1/4 -left-32 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none"
-  >
+  <!-- ========================== -->
+  <!-- Background Layer Estático  -->
+  <!-- ========================== -->
+  <div class="absolute inset-0 z-0 pointer-events-none">
+    <div class="absolute inset-0 opacity-[0.02] bg-[url(/noise.svg)] dark:opacity-[0.04]"></div>
+
+    <!-- Texto Hueco Gigante en el fondo (Marca de agua del precio) -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] md:text-[25rem] lg:text-[35rem] font-black text-transparent text-stroke-secondary dark:text-stroke-primary opacity-[0.03] dark:opacity-[0.02] whitespace-nowrap select-none">
+      $119k
+    </div>
   </div>
 
-  <!-- Section divider top -->
-  <div
-    class="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-primary/20 to-transparent"
-  >
-  </div>
+  <div class="container mx-auto px-6 lg:px-12 relative z-10">
 
-  <!-- Content -->
-  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-    <!-- Header -->
-    <div class="text-center mb-16 animate-on-scroll">
-      <span
-        class="text-primary font-bold tracking-widest text-xs uppercase mb-4 block"
-      >
-        Pricing
-      </span>
-      <h2
-        class="text-3xl md:text-5xl font-bold text-base-content tracking-tight"
-      >
-        Un Solo Plan. Cero Ambigüedad.
+    <!-- HEADER -->
+    <div class="flex flex-col items-center text-center mb-16 lg:mb-24 animate-fade-in-up">
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-base-content tracking-tighter uppercase leading-none">
+        Un Solo Plan.<br />
+        <span class="text-secondary dark:text-primary">Cero Ambigüedad.</span>
       </h2>
-      <p class="text-base-content/50 text-sm md:text-base mt-4">
-        Sin opciones confusas ni extras escondidos. Un precio, todo incluido.
-      </p>
     </div>
 
-    <!-- Pricing card -->
-    <div class="relative max-w-2xl mx-auto animate-on-scroll">
-      <!-- Glow background effect -->
-      <div
-        class="absolute -inset-4 bg-linear-to-br from-primary/20 via-transparent to-secondary/20 rounded-[2.5rem] blur-2xl opacity-50 pointer-events-none"
-      >
-      </div>
+    <!-- ============================================== -->
+    <!-- EL "SPEC SHEET" (Layout Asimétrico Sin Tarjetas) -->
+    <!-- ============================================== -->
+    <div class="border-y border-base-content/10 bg-surface/40 dark:bg-base-100/40 backdrop-blur-md">
+      <div class="grid grid-cols-1 lg:grid-cols-12">
 
-      <!-- Main card -->
-      <div
-        class="relative bg-surface border-2 border-primary/30 rounded-3xl overflow-hidden shadow-[0_80px_100px_-30px_rgba(71,90,104,0.12)]"
-      >
-        <!-- Card header with gradient -->
-        <div
-          class="bg-linear-to-br from-secondary to-secondary/80 p-8 md:p-12 text-white text-center relative overflow-hidden"
-        >
-          <!-- Decorative orb inside header -->
-          <div
-            class="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2 pointer-events-none"
-          >
+        <!-- ==================================== -->
+        <!-- COLUMNA IZQUIERDA: Precio y CTA      -->
+        <!-- ==================================== -->
+        <div class="lg:col-span-5 p-8 lg:p-16 border-b lg:border-b-0 lg:border-r border-base-content/10 flex flex-col justify-center relative overflow-hidden">
+
+          <!-- Etiqueta técnica (Estilo código de barras) -->
+          <div class="flex items-center gap-2 mb-8 text-base-content/40 font-mono text-xs uppercase tracking-widest">
+            <span class="w-8 h-px bg-base-content/20"></span>
+            GLUONEX-LANDING-01
           </div>
 
-          <span
-            class="relative inline-block bg-white/20 text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4 border border-white/30"
-          >
-            Plan Único
-          </span>
-          <h3 class="relative text-2xl md:text-3xl font-bold mb-2">
-            Landing Page GluonEX
-          </h3>
-          <div class="relative flex items-baseline justify-center gap-2 mt-4">
-            <span class="text-5xl md:text-6xl font-extrabold">$119.990</span>
-            <span class="text-lg text-white/70 font-medium">+ IVA</span>
+          <!-- Bloque de Precio Monstruoso -->
+          <div class="mb-2 flex items-start gap-2">
+            <span class="text-4xl lg:text-5xl font-black text-base-content/50 mt-2 lg:mt-4">$</span>
+            <span class="text-[5rem] lg:text-[7rem] font-black tracking-tighter text-base-content leading-[0.8]">
+              119.990
+            </span>
           </div>
-          <p class="relative text-sm text-white/60 mt-3">
-            Pago único. Sin mensualidades. Sin contratos.
+
+          <div class="flex items-end gap-3 mb-8">
+            <span class="text-lg lg:text-xl font-bold text-secondary dark:text-primary tracking-widest uppercase mb-0.5">
+              + IVA
+            </span>
+          </div>
+
+          <p class="text-lg font-medium text-base-content/70 leading-relaxed mb-12 max-w-sm">
+            Pago único. Sin mensualidades trampa, sin contratos de amarre. Tu web es tuya para siempre.
           </p>
-        </div>
 
-        <!-- Features list + CTA -->
-        <div class="p-8 md:p-12">
-          <ul class="space-y-4 mb-8">
-            {
-              features.map((feature) => (
-                <li class="flex items-start gap-3">
-                  <Check class="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                  <span class="text-base-content/80 text-sm md:text-base">
-                    {feature}
-                  </span>
-                </li>
-              ))
-            }
-          </ul>
-
-          <!-- CTA button -->
+          <!-- CTA Monolítico -->
           <a
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            class="block w-full bg-secondary text-white py-5 rounded-xl text-lg font-bold text-center shadow-2xl hover:scale-[1.02] transition-transform"
+            class="group relative flex items-center justify-between w-full bg-secondary dark:bg-primary text-white p-6 lg:p-8 rounded-2xl lg:rounded-3xl hover:scale-[1.02] transition-all duration-300 shadow-[0_20px_40px_-10px_rgba(var(--color-secondary-rgb),0.4)] dark:shadow-[0_20px_40px_-10px_rgba(var(--color-primary-rgb),0.4)] overflow-hidden"
           >
-            Empezar Ahora →
+            <!-- Brillo de fondo en hover -->
+            <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
+
+            <span class="relative z-10 text-xl lg:text-2xl font-black uppercase tracking-wide">
+              Contratar Ahora
+            </span>
+            <div class="relative z-10 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center group-hover:translate-x-2 transition-transform duration-300">
+              <ArrowRight class="w-6 h-6 text-white" />
+            </div>
           </a>
 
-          <!-- Trust badges -->
-          <div class="flex flex-wrap justify-center gap-4 mt-6">
-            <span
-              class="text-xs text-base-content/40 flex items-center gap-1.5"
-            >
-              <Shield class="w-3 h-3" />
-              Sin contratos de permanencia
-            </span>
-            <span class="text-xs text-base-content/40">·</span>
-            <span class="text-xs text-base-content/40">Código 100% tuyo</span>
-            <span class="text-xs text-base-content/40">·</span>
-            <span class="text-xs text-base-content/40"
-              >Entrega en 7-10 días</span
-            >
+          <!-- Badges de confianza Minimalistas -->
+          <div class="flex flex-col gap-3 mt-8">
+            <div class="flex items-center gap-3 text-sm font-medium text-base-content/60">
+              <ShieldCheck class="w-5 h-5 text-secondary dark:text-primary" />
+              Garantía de satisfacción
+            </div>
+            <div class="flex items-center gap-3 text-sm font-medium text-base-content/60">
+              <Zap class="w-5 h-5 text-secondary dark:text-primary" />
+              Entrega ágil en 7-10 días
+            </div>
           </div>
+
         </div>
+
+        <!-- ==================================== -->
+        <!-- COLUMNA DERECHA: Especificaciones    -->
+        <!-- ==================================== -->
+        <div class="lg:col-span-7 p-8 lg:p-16 flex flex-col justify-center">
+
+          <h3 class="text-sm font-bold uppercase tracking-[0.2em] text-base-content/50 mb-8 flex items-center gap-4">
+            Especificaciones Técnicas
+            <span class="flex-1 h-px bg-base-content/10"></span>
+          </h3>
+
+          <!-- Grid de 2 columnas para los 10 features -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0">
+            {
+              features.map((feature, index) => {
+                const num = (index + 1).toString().padStart(2, '0');
+                return (
+                  <div class="group relative flex items-start gap-4 py-5 border-b border-base-content/10 transition-colors">
+
+                    <!-- Línea indicadora al hover -->
+                    <div class="absolute left-0 bottom-0 w-0 h-0.5 bg-secondary dark:bg-primary group-hover:w-full transition-all duration-500 ease-out"></div>
+
+                    <!-- Numeración técnica -->
+                    <span class="font-mono text-sm font-bold text-secondary dark:text-primary mt-0.5 opacity-60 group-hover:opacity-100 transition-opacity">
+                      [{num}]
+                    </span>
+
+                    <!-- Texto de la feature -->
+                    <span class="text-base-content/80 group-hover:text-base-content font-medium leading-relaxed transition-colors">
+                      {feature}
+                    </span>
+                  </div>
+                )
+              })
+            }
+          </div>
+
+        </div>
+
       </div>
     </div>
+
   </div>
 </section>
+
+<style is:global>
+  /* Tipografía hueca estática para el precio de fondo */
+  .text-stroke-secondary {
+    -webkit-text-stroke: 3px var(--color-secondary);
+  }
+  :is(.dark .text-stroke-primary) {
+    -webkit-text-stroke: 3px var(--color-primary);
+  }
+
+  /* Animaciones estándar */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out both;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

@@ -6,6 +6,7 @@ import {
   Code,
   RefreshCw,
   CheckCircle,
+  MoveHorizontal, // Nuevo icono para el indicador móvil
 } from "@lucide/astro";
 
 const steps = [
@@ -14,133 +15,234 @@ const steps = [
     label: "Paso 01",
     title: "Kickoff",
     description:
-      "Reunión inicial para entender tu negocio, tu marca y tus objetivos. Definimos el alcance exacto del proyecto.",
+      "Reunión inicial para entender tu negocio y objetivos. Definimos el alcance exacto.",
+    delay: "delay-100",
   },
   {
     icon: Palette,
     label: "Paso 02",
     title: "Dirección Creativa",
     description:
-      "Proponemos la paleta de colores, tipografía y estilo visual. Aprobas antes de que comencemos a diseñar.",
+      "Proponemos la paleta, tipografía y estilo visual. Aprobas antes de diseñar.",
+    delay: "delay-200",
   },
   {
     icon: Layout,
     label: "Paso 03",
     title: "Diseño",
     description:
-      "Diseñamos los mockups completos de tu sitio. Iteras con nosotros hasta que el resultado te convenza.",
+      "Diseñamos los mockups completos de tu sitio. Iteras con nosotros hasta que te convenza.",
+    delay: "delay-300",
   },
   {
     icon: Code,
     label: "Paso 04",
     title: "Desarrollo",
     description:
-      "Convertimos el diseño aprobado en código limpio, rápido y optimizado. Sin atajos, sin plantillas recicladas.",
+      "Convertimos el diseño en código limpio y optimizado. Sin plantillas recicladas.",
+    delay: "delay-400",
   },
   {
     icon: RefreshCw,
     label: "Paso 05",
     title: "Revisiones",
     description:
-      "Ajustes finales hasta que quedes 100% satisfecho. No hay límite de rondas.",
+      "Ajustes finales hasta que quedes 100% satisfecho. Sin límite de rondas.",
+    delay: "delay-500",
   },
   {
     icon: CheckCircle,
     label: "Paso 06",
     title: "Entrega",
     description:
-      "Publicamos tu sitio, activamos el dominio y el hosting. Tu web está lista para recibir clientes.",
+      "Publicamos tu sitio, activamos dominio y hosting. Lista para recibir clientes.",
+    delay: "delay-600",
   },
 ] as const;
 ---
 
 <section
   id="process"
-  class="bg-base-200 py-20 md:py-32 relative overflow-hidden"
+  class="bg-surface py-24 md:py-32 relative overflow-hidden"
 >
-  <!-- Background orb -->
-  <div
-    class="absolute top-1/2 -left-32 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none"
-  ></div>
+  <!-- ========================== -->
+  <!-- Background Layer -->
+  <!-- ========================== -->
+  <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.015] bg-[url(/noise.svg)] dark:opacity-[0.03]"></div>
+    <div class="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-secondary/20 dark:via-primary/20 to-transparent"></div>
+    <div class="absolute top-1/2 -right-48 w-150 h-150 bg-secondary/5 dark:bg-primary/5 rounded-full blur-[150px] pointer-events-none animate-pulse-slow"></div>
+  </div>
 
-  <!-- Section divider top -->
-  <div
-    class="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-primary/20 to-transparent"
-  ></div>
-
+  <!-- ========================== -->
   <!-- Content -->
-  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+  <!-- ========================== -->
+  <div class="container mx-auto px-6 lg:px-12 relative z-10">
+
     <!-- Header -->
-    <div class="text-center mb-16 md:mb-20 animate-on-scroll">
-      <span
-        class="text-primary font-bold tracking-widest text-xs uppercase mb-4 block"
-      >
-        El Proceso
-      </span>
-      <h2
-        class="text-3xl md:text-5xl font-bold text-base-content tracking-tight"
-      >
-        De la Confirmación a la Entrega.
+    <div class="flex flex-col items-center text-center mb-16 md:mb-24 animate-fade-in-up">
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-base-content tracking-tighter mb-4 max-w-2xl">
+        De la Confirmación <br />
+        <span class="text-transparent bg-clip-text bg-linear-to-r from-base-content to-base-content/80">
+          a la Entrega.
+        </span>
       </h2>
-      <p class="text-base-content/50 text-sm md:text-base mt-4">
-        6 pasos. Sin improvisación.
+      <p class="text-base-content/60 text-lg font-medium mt-4">
+        6 pasos exactos. Cero improvisación.
       </p>
     </div>
 
-    <!-- Timeline -->
-    <div class="max-w-4xl mx-auto relative">
-      <!-- Vertical center line (desktop) / left line (mobile) -->
-      <div
-        class="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-linear-to-b from-primary/10 via-primary/40 to-primary/10 md:-translate-x-1/2"
-      ></div>
+    <!--
+      Contenedor Principal de la Línea de Tiempo
+      max-w-5xl y mx-auto garantizan el centrado perfecto en Desktop.
+    -->
+    <div class="max-w-5xl mx-auto w-full relative">
 
-      <div class="space-y-8 md:space-y-12">
+      <!-- DESKTOP: Central Laser Track -->
+      <div class="hidden md:block absolute left-1/2 top-4 bottom-4 w-px bg-base-300 dark:bg-base-content/10 -translate-x-1/2 overflow-hidden z-0">
+        <div class="w-full h-32 bg-linear-to-b from-transparent via-secondary dark:via-primary to-transparent animate-laser"></div>
+      </div>
+
+      <!-- Wrapper del Carrusel (Móvil) / Pila (Desktop) -->
+      <div class="flex md:flex-col overflow-x-auto snap-x snap-mandatory md:overflow-visible hide-scrollbar pb-8 pt-4 gap-6 md:gap-0">
         {
-          steps.map(({ icon: Icon, label, title, description }, index) => {
+          steps.map(({ icon: Icon, label, title, description, delay }, index) => {
             const isLeft = index % 2 === 0;
+            const number = `0${index + 1}`;
+            const isLast = index === steps.length - 1;
+
+            // Compresión Vertical Segura (Evita que las cards colisionen si tienen mucho texto)
+            const verticalCompression = index > 0 ? "md:-mt-6 lg:-mt-10" : "";
+
             return (
-              <div class="relative flex items-start animate-on-scroll">
-                {/* Dot on the line */}
-                <div class="absolute left-6 md:left-1/2 w-10 h-10 -translate-x-1/2 bg-base-200 border-2 border-primary rounded-full flex items-center justify-center z-10 shrink-0">
-                  <Icon class="w-4 h-4 text-primary" />
+              /* Contenedor de Fila (pointer-events-none para evitar hitboxes superpuestos) */
+              <div class={`relative group shrink-0 snap-center w-[85vw] md:w-full flex flex-col md:flex-row md:items-center animate-fade-in-up ${delay} ${verticalCompression} pointer-events-none`}>
+
+                <!-- ==================================== -->
+                <!-- MÓVIL: Nodo y conector superior      -->
+                <!-- ==================================== -->
+                <div class="flex md:hidden relative items-center mb-6 h-14 pointer-events-auto">
+                  <div class="relative w-14 h-14 rounded-full border-4 border-surface dark:border-base-100 bg-base-200 dark:bg-surface flex items-center justify-center shrink-0 z-20 group-hover:border-secondary/20 dark:group-hover:border-primary/20 transition-all duration-500 shadow-sm">
+                    <Icon class="w-5 h-5 text-base-content/40 group-hover:text-secondary dark:group-hover:text-primary transition-colors" />
+                  </div>
+                  {!isLast && (
+                    <div class="absolute top-1/2 left-14 w-[calc(100%+1.5rem)] h-px bg-base-300 dark:bg-base-content/10 z-10 overflow-hidden">
+                      <div class="absolute inset-0 bg-secondary dark:bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700"></div>
+                    </div>
+                  )}
                 </div>
 
-                {/* Card — left side (odd steps: 1, 3, 5) */}
-                {isLeft ? (
-                  <div class="ml-14 md:ml-0 md:w-[calc(50%-3rem)] md:mr-auto md:pr-8">
-                    <div class="bg-surface border border-base-300 rounded-2xl p-6 shadow-sm hover:shadow-[0_0_30px_-5px_rgba(169,155,115,0.15)] transition-shadow duration-500">
-                      <span class="text-primary font-bold text-xs uppercase tracking-widest">
-                        {label}
-                      </span>
-                      <h3 class="text-xl font-bold text-base-content mt-2 mb-2">
+                <!-- ==================================== -->
+                <!-- DESKTOP: Nodo central interactivo    -->
+                <!-- ==================================== -->
+                <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-base-200 dark:bg-surface border-4 border-base-100 group-hover:border-secondary/20 dark:group-hover:border-primary/20 rounded-full items-center justify-center z-20 shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(var(--color-secondary-rgb),0.3)] dark:group-hover:shadow-[0_0_30px_rgba(var(--color-primary-rgb),0.3)] pointer-events-auto">
+                  <div class="absolute inset-1 rounded-full bg-base-300/50 dark:bg-base-content/5 group-hover:bg-secondary/10 dark:group-hover:bg-primary/10 transition-colors duration-500"></div>
+                  <Icon class="relative z-10 w-5 h-5 text-base-content/40 group-hover:text-secondary dark:group-hover:text-primary transition-colors duration-500" />
+                </div>
+
+                <!-- Línea conectora Desktop -->
+                <div class={`hidden md:block absolute top-1/2 h-px bg-base-300 dark:bg-base-content/10 transition-all duration-700 z-10 w-8 lg:w-14 group-hover:bg-secondary dark:group-hover:bg-primary
+                  ${isLeft ? 'right-1/2 mr-7 origin-right' : 'left-1/2 ml-7 origin-left'}
+                  scale-x-0 group-hover:scale-x-100
+                `}></div>
+
+                <!-- ==================================== -->
+                <!-- TARJETA DE CONTENIDO                 -->
+                <!-- ==================================== -->
+                <div class={`relative w-full md:w-1/2 flex pointer-events-auto transition-transform duration-500 ease-out hover:-translate-y-2 z-30
+                  ${isLeft ? 'md:pr-12 lg:pr-20' : 'md:pl-12 lg:pl-20 md:ml-auto'}
+                `}>
+                  <div class="w-full relative bg-white/50 dark:bg-base-100/30 backdrop-blur-xl border border-base-300 dark:border-base-content/10 rounded-3xl p-8 lg:p-10 shadow-sm group-hover:shadow-lg group-hover:border-secondary/40 dark:group-hover:border-primary/40 transition-colors duration-500 overflow-hidden">
+
+                    <!-- Hover Glow -->
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[radial-gradient(circle_at_bottom_right,rgba(var(--color-secondary-rgb),0.05),transparent_70%)] dark:bg-[radial-gradient(circle_at_bottom_right,rgba(var(--color-primary-rgb),0.05),transparent_70%)] pointer-events-none" />
+
+                    <!-- Watermark -->
+                    <span class={`absolute -top-10 text-[10rem] font-black leading-none pointer-events-none select-none opacity-20 group-hover:opacity-40 transition-opacity duration-500 text-secondary/50 dark:text-primary/50
+                      ${isLeft ? '-right-4 md:-left-4' : '-right-4'}
+                    `}>
+                      {number}
+                    </span>
+
+                    <div class="relative z-10">
+                      <h3 class="text-2xl md:text-3xl font-extrabold text-base-content tracking-tight mb-3">
                         {title}
                       </h3>
-                      <p class="text-sm text-base-content/60 leading-relaxed">
+                      <p class="text-base text-base-content/70 leading-relaxed font-medium">
                         {description}
                       </p>
                     </div>
+
                   </div>
-                ) : (
-                  /* Card — right side (even steps: 2, 4, 6) */
-                  <div class="ml-14 md:ml-auto md:w-[calc(50%-3rem)] md:pl-8">
-                    <div class="bg-surface border border-base-300 rounded-2xl p-6 shadow-sm hover:shadow-[0_0_30px_-5px_rgba(169,155,115,0.15)] transition-shadow duration-500">
-                      <span class="text-primary font-bold text-xs uppercase tracking-widest">
-                        {label}
-                      </span>
-                      <h3 class="text-xl font-bold text-base-content mt-2 mb-2">
-                        {title}
-                      </h3>
-                      <p class="text-sm text-base-content/60 leading-relaxed">
-                        {description}
-                      </p>
-                    </div>
-                  </div>
-                )}
+                </div>
+
               </div>
             );
           })
         }
       </div>
+
+      <!-- ==================================== -->
+      <!-- INDICADOR DE SCROLL (Solo Móvil)     -->
+      <!-- ==================================== -->
+      <div class="flex md:hidden items-center justify-center gap-3 mt-6 text-base-content/40 ">
+        <MoveHorizontal class="w-5 h-5" />
+        <span class="text-[10px] font-bold uppercase tracking-[0.2em]">Desliza para explorar</span>
+      </div>
+
     </div>
   </div>
 </section>
+
+<style is:global>
+  /* Hollow Text */
+  .text-stroke-secondary {
+    -webkit-text-stroke: 2px var(--color-secondary);
+  }
+  :is(.dark .text-stroke-primary) {
+    -webkit-text-stroke: 2px var(--color-primary);
+  }
+
+  /* Láser Central (Desktop) */
+  @keyframes laser {
+    0% { transform: translateY(-100%); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(1000px); opacity: 0; }
+  }
+  .animate-laser {
+    animation: laser 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  /* Ocultar scrollbar en carrusel móvil */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Fade-in animations */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out both;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+  .delay-500 { animation-delay: 0.5s; }
+  .delay-600 { animation-delay: 0.6s; }
+
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.05); }
+  }
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+</style>

@@ -7,8 +7,6 @@ import LandingFeatures from "../components/landing/LandingFeatures.astro";
 import LandingProcess from "../components/landing/LandingProcess.astro";
 import LandingPricing from "../components/landing/LandingPricing.astro";
 import LandingFAQ from "../components/landing/LandingFAQ.astro";
-import LandingCTA from "../components/landing/LandingCTA.astro";
-import LandingFooter from "../components/landing/LandingFooter.astro";
 ---
 
 <Layout
@@ -23,9 +21,7 @@ import LandingFooter from "../components/landing/LandingFooter.astro";
     <LandingProcess />
     <LandingPricing />
     <LandingFAQ />
-    <LandingCTA />
   </main>
-  <LandingFooter />
 
   <!-- Sticky bottom CTA — aparece al salir del hero -->
   <div
@@ -48,7 +44,7 @@ import LandingFooter from "../components/landing/LandingFooter.astro";
           href="https://wa.me/56973789128?text=Hola%20GluonEX%2C%20quiero%20cotizar%20una%20Landing%20Page."
           target="_blank"
           rel="noopener noreferrer"
-          class="bg-secondary text-white px-6 py-3 rounded-xl font-bold text-sm hover:scale-105 transition-transform shadow-lg shrink-0"
+          class="bg-secondary dark:bg-primary text-white px-6 py-3 rounded-xl font-bold text-sm hover:scale-105 transition-transform shadow-lg shrink-0"
         >
           Cotizar Ahora →
         </a>

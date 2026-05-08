@@ -2,120 +2,145 @@
 import { Paintbrush, Globe, Server, Search, Code, FileText } from "@lucide/astro";
 
 const features = [
-  {
-    watermark: "01",
-    icon: Paintbrush,
-    title: "Diseño a Medida",
-    description:
-      "Nada de templates. Tu sitio es diseñado desde cero para reflejar tu marca y captar a tu cliente ideal.",
-  },
-  {
-    watermark: "02",
-    icon: Globe,
-    title: "Dominio Incluido",
-    description:
-      "Tu dominio .cl o .com por el primer año, sin costo adicional. Listo para usar desde el día de entrega.",
-  },
-  {
-    watermark: "03",
-    icon: Server,
-    title: "Hosting Gratis",
-    description:
-      "Alojamiento incluido por 12 meses. Sin costos ocultos, sin facturas sorpresa al mes siguiente.",
-  },
-  {
-    watermark: "04",
-    icon: Search,
-    title: "SEO de Base",
-    description:
-      "Optimización técnica para buscadores integrada desde el inicio: velocidad, estructura y metadatos correctos.",
-  },
-  {
-    watermark: "05",
-    icon: Code,
-    title: "Código 100% Tuyo",
-    description:
-      "El código fuente te pertenece. Sin dependencias de plataformas cerradas, sin licencias adicionales.",
-  },
-  {
-    watermark: "06",
-    icon: FileText,
-    title: "Contenido Optimizado",
-    description:
-      "Redacción y estructura de contenido pensada para convertir visitantes en clientes, no solo para verse bien.",
-  },
+ {
+  watermark: "01",
+  icon: Paintbrush,
+  title: "Diseño a Medida",
+  description: "Nada de templates. Tu sitio es diseñado desde cero para reflejar tu marca y captar a tu cliente ideal.",
+ },
+ {
+  watermark: "02",
+  icon: Globe,
+  title: "Dominio Incluido",
+  description: "Tu dominio .cl o .com por el primer año, sin costo adicional. Listo para usar desde el día de entrega.",
+ },
+ {
+  watermark: "03",
+  icon: Server,
+  title: "Hosting Gratis",
+  description: "Alojamiento incluido por 12 meses. Sin costos ocultos, sin facturas sorpresa al mes siguiente.",
+ },
+ {
+  watermark: "04",
+  icon: Search,
+  title: "SEO de Base",
+  description: "Optimización técnica para buscadores integrada desde el inicio: velocidad, estructura y metadatos correctos.",
+ },
+ {
+  watermark: "05",
+  icon: Code,
+  title: "Código 100% Tuyo",
+  description: "El código fuente te pertenece. Sin dependencias de plataformas cerradas, sin licencias adicionales.",
+ },
+ {
+  watermark: "06",
+  icon: FileText,
+  title: "Contenido Optimizado",
+  description: "Redacción y estructura de contenido pensada para convertir visitantes en clientes, no solo para verse bien.",
+ },
 ];
 ---
 
 <section
-  id="features"
-  class="bg-surface py-20 md:py-32 relative overflow-hidden"
+ id="features"
+ class="bg-surface py-16 lg:py-32 relative overflow-x-clip"
 >
-  <!-- Background orb -->
-  <div
-    class="absolute bottom-1/4 -left-32 w-96 h-96 bg-secondary/5 rounded-full blur-[120px] pointer-events-none"
-  ></div>
+ <!-- ========================== -->
+ <!-- Background Layer -->
+ <!-- ========================== -->
+ <div class="absolute inset-0 z-0 pointer-events-none">
+  <div class="absolute inset-0 opacity-[0.015] bg-[url(/noise.svg)] dark:opacity-[0.03]"></div>
+  <div class="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-secondary/30 dark:via-primary/30 to-transparent"></div>
 
-  <!-- Section divider top -->
-  <div
-    class="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-primary/20 to-transparent"
-  ></div>
+  <!-- Orbes ambientales -->
+  <div class="fixed top-1/2 left-0 w-125 h-125 bg-secondary/5 dark:bg-primary/5 rounded-full blur-[150px] -translate-y-1/2 pointer-events-none -z-10"></div>
+  <div class="fixed bottom-0 right-0 w-150 h-150 bg-secondary/5 dark:bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+ </div>
 
-  <!-- Content -->
-  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+ <!-- ========================== -->
+ <!-- Main Content -->
+ <!-- ========================== -->
+ <div class="container mx-auto px-6 lg:px-12 relative z-10">
 
-    <!-- Section header -->
-    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16 md:mb-20">
-      <!-- Left: eyebrow + headline -->
-      <div class="animate-on-scroll">
-        <span class="text-primary font-bold tracking-widest text-xs uppercase mb-4 block">
-          Todo Incluido
+  <div class="grid lg:grid-cols-12 gap-6 lg:gap-20 items-start">
+
+    <!-- ==================================== -->
+    <!-- LADO IZQUIERDO: Sticky Header        -->
+    <!-- ==================================== -->
+    <div class="lg:col-span-5 lg:sticky lg:top-32 flex flex-col pt-0 lg:pt-4 animate-fade-in-up">
+
+      <!-- Título (Más compacto en móvil) -->
+      <h2 class="text-4xl lg:text-6xl font-black text-base-content tracking-tighter leading-none lg:leading-[0.95] mb-3 lg:mb-6">
+        Sin letra chica.<br />
+        <span class="text-transparent bg-clip-text bg-linear-to-r from-base-content to-base-content/80">
+          Lo que ves, es lo que hay.
         </span>
-        <h2 class="text-3xl md:text-5xl font-bold text-base-content tracking-tight">
-          Sin Letra Chica.
-        </h2>
-      </div>
+      </h2>
 
-      <!-- Right: supporting copy -->
-      <p class="text-base-content/50 text-sm md:text-base max-w-sm mt-6 lg:mt-0 animate-on-scroll">
-        Cada detalle está incluido en el precio. Lo que ves es lo que pagas.
+      <!-- Texto (Menos margen en móvil) -->
+      <p class="text-base lg:text-lg text-base-content/60 font-medium mb-2 lg:mb-12 max-w-md">
+        Nos aseguramos de que cada detalle técnico, estratégico y de infraestructura esté cubierto desde el minuto cero.
       </p>
     </div>
 
-    <!-- Features grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+    <!-- ==================================== -->
+    <!-- LADO DERECHO: Lista Compacta (Móvil) / Extendida (Desktop) -->
+    <!-- ==================================== -->
+    <div class="lg:col-span-7 flex flex-col border-t border-base-content/10 mt-2 lg:mt-0 lg:border-t-0">
       {
         features.map((feature) => (
-          <div class="relative bg-surface border border-base-300 hover:border-transparent p-8 md:p-10 rounded-3xl group hover:bg-primary/5 transition-all duration-500 shadow-sm hover:shadow-md overflow-hidden animate-on-scroll">
-            <!-- Gradient border on hover -->
-            <div
-              class="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-              style="padding:2px;background:linear-gradient(to bottom right, var(--color-primary), var(--color-secondary));-webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude"
-            />
+          <!-- Reduje los padding en móvil: py-5 px-0. En desktop se mantiene p-8 -->
+          <div class="group relative flex flex-row items-start gap-4 lg:gap-6 py-5 lg:p-8 border-b border-base-content/10 lg:hover:bg-white/40 dark:lg:hover:bg-base-100/40 transition-colors duration-300 overflow-hidden cursor-default">
 
-            <!-- Watermark number -->
-            <span class="absolute -bottom-4 -right-2 text-[8rem] font-extrabold text-primary/4 leading-none pointer-events-none select-none">
-              {feature.watermark}
-            </span>
+            <!-- Acento vertical en Hover (Solo Desktop) -->
+            <div class="hidden lg:block absolute left-0 top-0 bottom-0 w-1.5 bg-secondary dark:bg-primary scale-y-0 group-hover:scale-y-100 origin-center transition-transform duration-300 rounded-r-full"></div>
 
-            <!-- Content -->
-            <div class="relative z-10">
-              <!-- Icon box -->
-              <div class="w-12 h-12 md:w-14 md:h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                <feature.icon class="w-6 h-6 md:w-7 md:h-7 text-primary" />
-              </div>
+            <!-- Contenedor del Icono (Más pequeño en móvil: w-12 h-12) -->
+            <div class="relative w-12 h-12 lg:w-16 lg:h-16 rounded-xl lg:rounded-2xl bg-base-200 dark:bg-surface border border-base-300 dark:border-base-content/10 flex items-center justify-center shrink-0 lg:group-hover:border-secondary/30 dark:lg:group-hover:border-primary/30 lg:group-hover:scale-105 transition-all duration-300 z-10 shadow-sm mt-1 lg:mt-0">
+              <div class="absolute inset-1 rounded-lg lg:rounded-xl bg-base-300/50 dark:bg-base-content/5 lg:group-hover:bg-secondary/10 dark:lg:group-hover:bg-primary/10 transition-colors duration-300"></div>
+              <!-- Icono más pequeño en móvil -->
+              <feature.icon class="relative z-10 w-5 h-5 lg:w-7 lg:h-7 text-base-content/50 lg:group-hover:text-secondary dark:lg:group-hover:text-primary transition-colors duration-300" stroke-width={2} />
+            </div>
 
-              <h3 class="text-xl font-bold text-base-content mb-3">
+            <!-- Textos -->
+            <div class="flex-1 relative z-10 lg:pt-1">
+              <!-- Títulos y márgenes más apretados en móvil -->
+              <h3 class="text-lg lg:text-2xl font-extrabold text-base-content mb-1 lg:mb-3 tracking-tight lg:group-hover:text-secondary dark:lg:group-hover:text-primary transition-colors duration-300">
                 {feature.title}
               </h3>
-              <p class="text-sm md:text-base text-base-content/60 leading-relaxed">
+              <!-- Fuente más pequeña y compacta en móvil -->
+              <p class="text-sm lg:text-base text-base-content/70 leading-snug lg:leading-relaxed font-medium">
                 {feature.description}
               </p>
             </div>
+
+            <!-- Oculto en Móvil: Número de Agua -->
+            <div class="hidden lg:block absolute right-4 top-1/2 -translate-y-1/2 text-[6rem] font-black leading-none text-transparent text-stroke-secondary dark:text-stroke-primary opacity-5 group-hover:opacity-15 transition-all duration-500 select-none pointer-events-none -rotate-6 group-hover:rotate-0 group-hover:scale-110">
+              {feature.watermark}
+            </div>
+
           </div>
         ))
       }
     </div>
 
   </div>
+ </div>
 </section>
+
+<style is:global>
+  .text-stroke-secondary {
+    -webkit-text-stroke: 1.5px var(--color-secondary);
+  }
+  :is(.dark .text-stroke-primary) {
+    -webkit-text-stroke: 1.5px var(--color-primary);
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out both;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

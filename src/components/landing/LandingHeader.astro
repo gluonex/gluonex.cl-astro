@@ -26,17 +26,6 @@ import { Menu, X, ArrowLeft } from "@lucide/astro";
           class="h-10 w-auto hidden dark:block"
         />
       </a>
-
-      <a
-        href="/"
-        class="group hidden sm:inline-flex items-center gap-1.5 text-xs text-base-content/40 hover:text-primary transition-colors font-medium"
-        aria-label="Volver a página principal"
-      >
-        <ArrowLeft
-          class="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform"
-        />
-        Página Principal
-      </a>
     </div>
 
     <!-- Desktop Nav -->
@@ -47,14 +36,24 @@ import { Menu, X, ArrowLeft } from "@lucide/astro";
         >Inicio</a
       >
       <a
-        href="#pricing"
+        href="#philosophy"
         class="text-base-content hover:text-primary font-semibold tracking-tight transition-colors"
-        >Precios</a
+        >Filosofía</a
+      >
+      <a
+        href="#features"
+        class="text-base-content hover:text-primary font-semibold tracking-tight transition-colors"
+        >Características</a
       >
       <a
         href="#process"
         class="text-base-content hover:text-primary font-semibold tracking-tight transition-colors"
         >Proceso</a
+      >
+      <a
+        href="#pricing"
+        class="text-base-content hover:text-primary font-semibold tracking-tight transition-colors"
+        >Precios</a
       >
       <a
         href="#faq"
@@ -82,17 +81,6 @@ import { Menu, X, ArrowLeft } from "@lucide/astro";
 >
   <div class="flex flex-col items-center justify-start pt-12 space-y-8 px-6">
     <!-- Back link visible in mobile menu too -->
-    <a
-      href="/"
-      class="group inline-flex items-center gap-2 text-sm text-base-content/40 hover:text-primary transition-colors font-medium mobile-nav-link-landing"
-    >
-      <ArrowLeft
-        class="w-4 h-4 group-hover:-translate-x-0.5 transition-transform"
-      />
-      Página Principal
-    </a>
-
-    <div class="w-full border-t border-base-300/50"></div>
 
     <a
       href="#hero-landing"
@@ -100,14 +88,24 @@ import { Menu, X, ArrowLeft } from "@lucide/astro";
       >Inicio</a
     >
     <a
-      href="#pricing"
+      href="#philosophy"
       class="text-2xl text-base-content hover:text-primary font-semibold tracking-tight transition-colors mobile-nav-link-landing"
-      >Precios</a
+      >Filosofía</a
+    >
+    <a
+      href="#features"
+      class="text-2xl text-base-content hover:text-primary font-semibold tracking-tight transition-colors mobile-nav-link-landing"
+      >Características</a
     >
     <a
       href="#process"
       class="text-2xl text-base-content hover:text-primary font-semibold tracking-tight transition-colors mobile-nav-link-landing"
       >Proceso</a
+    >
+    <a
+      href="#pricing"
+      class="text-2xl text-base-content hover:text-primary font-semibold tracking-tight transition-colors mobile-nav-link-landing"
+      >Precios</a
     >
     <a
       href="#faq"
@@ -146,10 +144,12 @@ import { Menu, X, ArrowLeft } from "@lucide/astro";
       updateMenu(!isOpen);
     });
 
-    document.querySelectorAll(".mobile-nav-link-landing").forEach(function (link) {
-      link.addEventListener("click", function () {
-        updateMenu(false);
+    document
+      .querySelectorAll(".mobile-nav-link-landing")
+      .forEach(function (link) {
+        link.addEventListener("click", function () {
+          updateMenu(false);
+        });
       });
-    });
   })();
 </script>

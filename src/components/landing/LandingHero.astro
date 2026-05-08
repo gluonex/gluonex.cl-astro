@@ -1,140 +1,188 @@
 ---
-import { Clock, Code, Globe, Search } from "@lucide/astro";
+import { Clock, Code, Globe, Search, ArrowRight, Zap, Layers3, ArrowLeft } from "@lucide/astro";
 
+// Reestructuramos las métricas para un layout simétrico ("Esquinas")
 const metrics = [
-  {
-    icon: Clock,
-    value: "7-10",
-    label: "días hábiles",
-  },
-  {
-    icon: Code,
-    value: "100%",
-    label: "código propio",
-  },
-  {
-    icon: Globe,
-    value: "$0",
-    label: "hosting incluido",
-  },
-  {
-    icon: Search,
-    value: "100%",
-    label: "SEO optimizado",
-  },
+ {
+  icon: Zap,
+  value: "7-10",
+  label: "días",
+  position: "top-[5%] -left-[5%] lg:-left-[10%]",
+  layout: "flex-row", // Icono a la izquierda, texto a la derecha
+  connector: "right-[-40px] top-1/2 w-10 h-px bg-gradient-to-r from-secondary/50 to-transparent", // Línea apuntando al centro
+ },
+ {
+  icon: Code,
+  value: "100%",
+  label: "propio",
+  position: "top-[5%] -right-[3%] lg:-right-[10%]",
+  layout: "flex-row-reverse text-right", // Icono a la derecha, texto a la izquierda
+  connector: "left-[-40px] top-1/2 w-10 h-px bg-gradient-to-l from-secondary/50 to-transparent",
+ },
+ {
+  icon: Layers3,
+  value: "$0",
+  label: "hosting",
+  position: "bottom-[5%] -left-[3%] lg:-left-[5%]",
+  layout: "flex-row",
+  connector: "right-[-40px] top-1/2 w-10 h-px bg-gradient-to-r from-secondary/50 to-transparent",
+ },
+ {
+  icon: Search,
+  value: "100%",
+  label: "SEO",
+  position: "bottom-[3%] -right-[2%] lg:-right-[5%]",
+  layout: "flex-row-reverse text-right",
+  connector: "left-[-40px] top-1/2 w-10 h-px bg-gradient-to-l from-secondary/50 to-transparent",
+ },
 ] as const;
 
 const whatsappHref =
-  "https://wa.me/56973789128?text=Hola%20GluonEX%2C%20quiero%20cotizar%20una%20Landing%20Page.";
+ "https://wa.me/56973789128?text=Hola%20GluonEX%2C%20quiero%20cotizar%20una%20Landing%20Page.";
 ---
 
 <section
-  id="hero-landing"
-  class="relative min-h-screen flex items-center pt-24 overflow-hidden bg-surface"
+ id="hero-landing"
+ class="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-surface perspective-distant"
 >
-  <!-- Background layer -->
-  <div class="absolute inset-0 z-0 pointer-events-none">
-    <!-- Dot grid -->
-    <div
-      class="absolute inset-0 bg-[radial-gradient(var(--color-primary)_1px,transparent_1px)] bg-size-[40px_40px] opacity-[0.05]"
-    >
-    </div>
+ <!-- ========================== -->
+ <!-- Background Layer -->
+ <!-- ========================== -->
+ <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.015] bg-[url(/noise.svg)] dark:opacity-[0.03]"></div>
+  <div class="absolute -bottom-1/2 left-0 right-0 h-full w-full origin-bottom transform:rotateX(60deg) bg-[linear-gradient(to_right,var(--color-base-300)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-base-300)_1px,transparent_1px)] bg-size-[60px_60px] opacity-[0.1] dark:opacity-[0.05] mask-[radial-gradient(ellipse_at_top,white,transparent_70%)]"></div>
+  <div class="absolute top-1/4 -left-48 w-125 h-125 bg-primary/20 rounded-full blur-[120px] animate-blob"></div>
+  <div class="absolute bottom-0 -right-48 w-150 h-150 bg-secondary/15 rounded-full blur-[140px] animate-blob animation-delay-2000"></div>
+ </div>
 
-    <!-- Orb 1 -->
-    <div
-      class="absolute top-1/4 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-[100px] animate-[pulse_6s_ease-in-out_infinite]"
-    >
-    </div>
+ <!-- ========================== -->
+ <!-- Main Content Container -->
+ <!-- ========================== -->
+ <div class="container mx-auto px-6 lg:px-12 relative z-10">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
 
-    <!-- Orb 2 -->
-    <div
-      class="absolute bottom-1/4 -right-32 w-160 h-160 bg-secondary/10 rounded-full blur-[120px] animate-[pulse_8s_ease-in-out_infinite_alternate]"
-    >
-    </div>
-  </div>
+      <!-- LEFT COLUMN -->
+      <div class="lg:col-span-6 text-left flex flex-col items-start animate-fade-in-up">
 
-  <!-- Content -->
-  <div
-    class="container mx-auto px-6 lg:px-12 relative z-10 flex flex-col items-center text-center"
-  >
-    <div class="max-w-4xl flex flex-col items-center animate-on-scroll">
-      <!-- Badge -->
-      <span
-        class="inline-flex items-center backdrop-blur-md bg-white/60 dark:bg-base-100/60 border border-base-300/50 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase text-primary mb-6"
-      >
-        Sin promesas vacías
-      </span>
-
-      <!-- Headline -->
-      <h1
-        class="text-5xl md:text-7xl lg:text-8xl font-extrabold text-base-content leading-[1.05] tracking-tighter mb-8"
-      >
-        Tu web<span
-          class="bg-linear-to-r from-secondary to-info bg-clip-text text-transparent pr-2 inline-block"
-        >
-          publicada.</span
-        >
-      </h1>
-
-      <!-- Subtitle -->
-      <p
-        class="text-base md:text-xl text-base-content/70 max-w-2xl leading-relaxed mb-10 font-medium"
-      >
-        Diseño web a medida para tu negocio. Sin templates, sin letra chica.
-        Código 100% tuyo, publicada en 7-10 días hábiles.
-      </p>
-
-      <!-- Metrics grid -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12 w-full max-w-3xl">
-        {
-          metrics.map(({ icon: Icon, value, label }) => (
-            <div class="relative bg-white/60 dark:bg-base-100/60 backdrop-blur-xl border border-base-300/50 rounded-2xl p-6 text-center group hover:border-primary/30 transition-all duration-500">
-              <!-- Hover glow -->
-              <div class="absolute inset-0 rounded-2xl bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl pointer-events-none" />
-
-              <!-- Icon -->
-              <div class="relative z-10 w-8 h-8 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-                <Icon class="w-4 h-4 text-primary" />
-              </div>
-
-              <!-- Value -->
-              <p class="relative z-10 text-3xl md:text-4xl font-bold text-secondary mb-1">
-                {value}
-              </p>
-
-              <!-- Label -->
-              <p class="relative z-10 text-xs text-base-content/50 uppercase tracking-wider font-medium">
-                {label}
-              </p>
-            </div>
-          ))
-        }
-      </div>
-
-      <!-- CTA Buttons -->
-      <div class="flex flex-wrap justify-center gap-6">
-        <a
-          href={whatsappHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="bg-secondary text-white px-6 md:px-10 py-3 md:py-5 rounded-xl font-bold shadow-2xl hover:scale-105 transition-transform text-base md:text-lg"
-        >
-          Cotizar Ahora
-        </a>
-
-        <a
-          href="#pricing"
-          class="relative group bg-surface border border-base-300 hover:border-transparent px-6 md:px-10 py-3 md:py-5 rounded-xl font-bold transition-all duration-500 text-secondary text-base md:text-lg"
-        >
-          <!-- Gradient border on hover -->
-          <div
-            class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-            style="padding:2px;background:linear-gradient(to bottom right, var(--color-primary), var(--color-secondary));-webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude"
+        <h1 class="text-6xl md:text-7xl lg:text-8xl font-black text-base-content leading-[0.95] tracking-tighter mb-8 max-w-3xl">
+          Tu página web,<span class="block"></span>
+          <span class="bg-linear-to-r from-secondary to-secondary/50 dark:from-primary  dark:to-primary/50 bg-clip-text text-transparent pb-2 inline-block animate-gradient-x bg-size-[200%_200%]">
+            en fácil</span
           >
+        </h1>
+        <p class="text-lg md:text-xl text-base-content/80 max-w-xl leading-relaxed mb-12 font-normal">
+          Creamos experiencias digitales a medida que convierten visitas en clientes. <strong class="font-semibold text-base-content">Sin plantillas</strong>, código 100% tuyo, optimizado y entregado en tiempo récord.
+        </p>
+
+        <div class="flex flex-wrap gap-6 items-center">
+          <a href={whatsappHref} target="_blank" rel="noopener noreferrer" class="group relative overflow-hidden bg-secondary dark:bg-primary text-white px-10 py-5 rounded-2xl font-bold transition-all duration-300 hover:-translate-y-0.5 text-lg flex items-center gap-2.5">
+            <div class="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 ease-in-out"></div>
+            Cotizar Mi Proyecto
+            <ArrowRight class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </a>
+          <a href="#pricing" class="group bg-base-200 hover:bg-base-300 text-base-content px-10 py-5 rounded-2xl font-bold transition-all duration-300 text-lg border border-base-300">
+            <span class="relative z-10 flex items-center gap-2">Ver Planes <span class="dark:text-primary text-secondary opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition-all">-&gt;</span></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ========================================= -->
+      <!-- RIGHT COLUMN: Ordenada y Estructurada -->
+      <!-- ========================================= -->
+      <div class="lg:col-span-6 relative flex justify-center items-center min-h-125 lg:min-h-150 animate-fade-in delay-500 mt-16 lg:mt-0">
+
+        <!-- 1. El Núcleo: Abstracción de Navegador -->
+        <div class="relative w-[75%] aspect-4/3 border dark:border-primary/30 border-secondary/30 rounded-3xl transform-[rotateY(-15deg)_rotateX(10deg)] shadow-[0_0_60px_-10px_rgba(var(--color-primary-rgb),0.2)] bg-base-100/40 backdrop-blur-md overflow-hidden group z-10">
+          <div class="absolute top-0 left-0 right-0 h-8 border-b dark:border-primary/20 dark:bg-primary/10 border-secondary/20 bg-secondary/10 flex items-center px-4 gap-1.5">
+            <div class="w-2.5 h-2.5 rounded-full bg-red-500/60"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/60"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-green-500/60"></div>
           </div>
-          <span class="relative z-10">Ver Detalles</span>
-        </a>
+          <div class="relative pt-12 p-6 flex flex-col gap-4 w-full h-full">
+            <div class="w-2/3 h-6 dark:bg-primary/20 bg-secondary/20 rounded-md animate-pulse"></div>
+            <div class="flex gap-4">
+              <div class="w-full h-24 border dark:border-primary/30 border-secondary/30 rounded-xl relative overflow-hidden dark:group-hover:border-primary/60 transition-colors group-hover:border-secondary/60">
+                <div class="absolute inset-0 bg-linear-to-r from-transparent via-primary/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1500"></div>
+              </div>
+              <div class="w-1/2 h-24 bg-base-content/5 rounded-xl"></div>
+            </div>
+            <div class="w-full h-3 bg-base-content/10 rounded-full"></div>
+            <div class="w-5/6 h-3 bg-base-content/10 rounded-full"></div>
+            <div class="w-4/6 h-3 bg-base-content/10 rounded-full"></div>
+            <div class="absolute bottom-6 right-6 w-24 h-10 dark:bg-primary/80 bg-secondary/80 rounded-lg shadow-lg transform:translateZ(20px) flex items-center justify-center text-white font-bold text-xs dark:group-hover:bg-primary group-hover:bg-secondary transition-colors">Aceptar</div>
+          </div>
+          <div class="absolute -inset-10 bg-[radial-gradient(closest-side,rgba(var(--color-primary-rgb),0.1),transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+        </div>
+
+        <!-- 2. Nodos estáticos de fondo -->
+        <div class="absolute inset-0 opacity-40 pointer-events-none">
+          <div class="absolute top-[20%] left-[15%] w-1.5 h-1.5 bg-info rounded-full"></div>
+          <div class="absolute top-[70%] right-[20%] w-2 h-2 bg-secondary rounded-full"></div>
+          <div class="absolute bottom-[30%] left-[25%] w-1 h-1 bg-primary rounded-full"></div>
+        </div>
+
+        <!-- 3. Las Métricas: Estructuradas y con conectores -->
+        {metrics.map(({ icon: Icon, value, label, position, layout, connector }) => (
+          <div class={`absolute ${position} flex ${layout} items-center gap-4 group z-20`}>
+
+            <!-- Contenedor del Icono -->
+            <div class="relative w-14 h-14 flex items-center justify-center transition-transform duration-300">
+              <!-- Círculos de fondo -->
+              <div class="absolute inset-0 rounded-full bg-surface border border-secondary/20 shadow-[0_0_15px_rgba(var(--color-secondary-rgb),0.1)] group-hover:border-secondary/50 transition-colors"></div>
+              <div class="absolute inset-1 rounded-full bg-secondary/5 group-hover:bg-secondary/10 transition-colors"></div>
+              <Icon class="relative z-10 w-5 h-5 text-secondary dark:text-primary" stroke-width={2} />
+
+              <!-- Línea conectora hacia el centro -->
+              <div class={`absolute ${connector} opacity-50 group-hover:opacity-100 transition-opacity duration-300`}></div>
+            </div>
+
+            <!-- Textos -->
+            <div class="flex flex-col justify-center">
+              <span class="text-3xl lg:text-4xl font-extrabold text-base-content tracking-tighter leading-none">
+                {value}
+              </span>
+              <span class="text-[10px] lg:text-xs font-bold uppercase text-base-content/60 tracking-widest mt-1">
+                {label}
+              </span>
+            </div>
+          </div>
+        ))}
+
       </div>
     </div>
-  </div>
+ </div>
 </section>
+
+<style is:global>
+ /* === Mantenemos las animaciones generales === */
+ @keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+ }
+ .animate-blob { animation: blob 10s infinite; }
+ .animation-delay-2000 { animation-delay: 2s; }
+
+ @keyframes gradient-x {
+  0% { bg-position: 0% 50%; }
+  50% { bg-position: 100% 50%; }
+  100% { bg-position: 0% 50%; }
+ }
+ .animate-gradient-x { animation: gradient-x 5s ease infinite; }
+
+ .animate-fade-in-up { animation: fadeInUp 0.8s ease-out both; }
+ .animate-fade-in { animation: fadeIn 1s ease-out both; }
+
+ @keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+ }
+ @keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+ }
+
+ .delay-500 { animation-delay: 0.5s; }
+ .perspective-distant { perspective: 2000px; }
+</style>

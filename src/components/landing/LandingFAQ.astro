@@ -1,5 +1,5 @@
 ---
-import { ChevronDown } from "@lucide/astro";
+import { Plus } from "@lucide/astro";
 
 const faqs = [
   {
@@ -37,100 +37,164 @@ const faqs = [
 ];
 ---
 
-<section id="faq" class="bg-base-200 py-20 md:py-32 relative overflow-hidden">
-  <!-- Section divider top -->
-  <div
-    class="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-primary/20 to-transparent"
-  >
+<section id="faq" class="bg-base-200 py-24 md:py-32 relative overflow-hidden">
+  <!-- ========================== -->
+  <!-- Background Layer           -->
+  <!-- ========================== -->
+  <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.015] bg-[url(/noise.svg)] dark:opacity-[0.03]"></div>
+    <div class="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-base-content/10 to-transparent"></div>
+    <div class="absolute bottom-0 right-0 w-200 h-200 bg-secondary/5 dark:bg-primary/5 rounded-full blur-[150px] pointer-events-none"></div>
   </div>
 
-  <!-- Background orb -->
-  <div
-    class="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none"
-  >
-  </div>
+  <!-- ========================== -->
+  <!-- Main Content               -->
+  <!-- ========================== -->
+  <div class="container mx-auto px-6 lg:px-12 relative z-10">
 
-  <!-- Content -->
-  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-    <!-- Header -->
-    <div class="text-center mb-16 animate-on-scroll">
-      <span
-        class="text-primary font-bold tracking-widest text-xs uppercase mb-4 block"
-        >FAQ</span
-      >
-      <h2
-        class="text-3xl md:text-5xl font-bold text-base-content tracking-tight"
-      >
-        Preguntas Honestas.
-      </h2>
-      <p class="text-base-content/50 text-sm md:text-base mt-4">
-        Si tienes una que no está aquí, escríbenos.
-      </p>
-    </div>
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
 
-    <!-- Accordion -->
-    <div class="max-w-3xl mx-auto space-y-4">
-      {
-        faqs.map((faq) => (
-          <div class="faq-item bg-surface border border-base-300 rounded-2xl overflow-hidden animate-on-scroll transition-all duration-300">
-            <button
-              class="faq-toggle w-full flex items-center justify-between p-6 text-left cursor-pointer group"
-              aria-expanded="false"
-            >
-              <h3 class="text-base md:text-lg font-bold text-base-content pr-4 group-hover:text-primary transition-colors">
-                {faq.q}
-              </h3>
-              <ChevronDown class="w-5 h-5 text-base-content/40 shrink-0 transition-transform duration-300 group-hover:text-primary" />
-            </button>
-            <div
-              class="faq-answer overflow-hidden transition-all duration-300"
-              style="max-height: 0;"
-            >
-              <p class="px-6 pb-6 text-sm md:text-base text-base-content/60 leading-relaxed">
-                {faq.a}
-              </p>
-            </div>
-          </div>
-        ))
-      }
+      <!-- ==================================== -->
+      <!-- LADO IZQUIERDO: Sticky Header        -->
+      <!-- ==================================== -->
+      <div class="lg:col-span-5 lg:sticky lg:top-32 flex flex-col pt-4 animate-fade-in-up">
+        <h2 class="text-5xl md:text-6xl font-black text-base-content tracking-tighter leading-[0.95] mb-6">
+          Preguntas <br />
+          <span class="text-transparent bg-clip-text bg-linear-to-r from-base-content to-base-content/80">
+            Honestas.
+          </span>
+        </h2>
+
+        <p class="text-lg text-base-content/60 font-medium mb-8 max-w-md">
+          Respuestas claras. Si tienes una duda técnica o comercial que no esté en esta lista, escríbenos directamente.
+        </p>
+      </div>
+
+      <!-- ==================================== -->
+      <!-- LADO DERECHO: Acordeón Minimalista   -->
+      <!-- ==================================== -->
+      <div class="lg:col-span-7 border-t border-base-content/10">
+        <div class="flex flex-col">
+          {
+            faqs.map((faq, index) => {
+              const num = (index + 1).toString().padStart(2, '0');
+              return (
+                <div class="faq-item group border-b border-base-content/10 transition-colors duration-300 hover:bg-surface/30 dark:hover:bg-base-100/30">
+                  <button
+                    class="faq-toggle w-full flex items-start lg:items-center justify-between py-6 lg:py-8 pr-4 text-left cursor-pointer"
+                    aria-expanded="false"
+                  >
+                    <div class="flex items-start lg:items-center gap-4 lg:gap-8 pr-6">
+                      <!-- Numeración Técnica -->
+                      <span class="faq-number font-mono text-sm font-bold text-base-content/30 group-hover:text-secondary dark:group-hover:text-primary transition-colors duration-300 mt-1 lg:mt-0">
+                        {num}
+                      </span>
+                      <!-- Título de la Pregunta -->
+                      <h3 class="faq-question text-xl lg:text-2xl font-bold text-base-content tracking-tight group-hover:text-secondary dark:group-hover:text-primary transition-colors duration-300">
+                        {faq.q}
+                      </h3>
+                    </div>
+
+                    <!-- Icono Plus (Gira a 'X' vía JS) -->
+                    <div class="relative w-6 h-6 shrink-0 mt-1 lg:mt-0 flex items-center justify-center">
+                      <Plus class="faq-icon w-6 h-6 text-base-content/40 group-hover:text-secondary dark:group-hover:text-primary transition-all duration-500" stroke-width={2} />
+                    </div>
+                  </button>
+
+                  <!-- Contenedor de la Respuesta -->
+                  <div
+                    class="faq-answer overflow-hidden transition-all duration-500 ease-in-out"
+                    style="max-height: 0; opacity: 0;"
+                  >
+                    <p class="pb-8 pl-12 lg:pl-18 text-base lg:text-lg text-base-content/70 leading-relaxed font-medium max-w-2xl">
+                      {faq.a}
+                    </p>
+                  </div>
+                </div>
+              );
+            })
+          }
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
+<!-- ========================== -->
+<!-- Lógica JavaScript          -->
+<!-- ========================== -->
 <script is:inline>
   document.querySelectorAll(".faq-toggle").forEach(function (btn) {
     btn.addEventListener("click", function () {
       var item = btn.closest(".faq-item");
       var answer = item.querySelector(".faq-answer");
-      var icon = btn.querySelector("svg");
+      var icon = item.querySelector(".faq-icon");
+      var question = item.querySelector(".faq-question");
+      var number = item.querySelector(".faq-number");
       var isOpen = btn.getAttribute("aria-expanded") === "true";
 
-      // Close all others
+      // 1. Cerrar todos los demás items (Acordeón único)
       document.querySelectorAll(".faq-item").forEach(function (other) {
         if (other !== item) {
           var otherBtn = other.querySelector(".faq-toggle");
           var otherAnswer = other.querySelector(".faq-answer");
-          var otherIcon = otherBtn.querySelector("svg");
+          var otherIcon = other.querySelector(".faq-icon");
+          var otherQuestion = other.querySelector(".faq-question");
+          var otherNumber = other.querySelector(".faq-number");
+
           otherBtn.setAttribute("aria-expanded", "false");
+
+          // Cerrar contenedor
           otherAnswer.style.maxHeight = "0";
+          otherAnswer.style.opacity = "0";
+
+          // Resetear icono (Plus)
           if (otherIcon) otherIcon.style.transform = "rotate(0deg)";
-          other.classList.remove("border-primary/30");
-          other.classList.add("border-base-300");
+
+          // Resetear colores
+          if(otherQuestion) otherQuestion.classList.remove("text-secondary", "dark:text-primary");
+          if(otherNumber) otherNumber.classList.remove("text-secondary", "dark:text-primary");
+          if(otherIcon) otherIcon.classList.remove("text-secondary", "dark:text-primary");
         }
       });
 
-      // Toggle current
+      // 2. Alternar el actual
       btn.setAttribute("aria-expanded", String(!isOpen));
-      answer.style.maxHeight = isOpen ? "0" : answer.scrollHeight + "px";
-      if (icon)
-        icon.style.transform = isOpen ? "rotate(0deg)" : "rotate(180deg)";
-      if (!isOpen) {
-        item.classList.add("border-primary/30");
-        item.classList.remove("border-base-300");
+
+      if (isOpen) {
+        // Cerrando...
+        answer.style.maxHeight = "0";
+        answer.style.opacity = "0";
+        if (icon) icon.style.transform = "rotate(0deg)";
+
+        // Quitar clases de color activo
+        question.classList.remove("text-secondary", "dark:text-primary");
+        number.classList.remove("text-secondary", "dark:text-primary");
+        icon.classList.remove("text-secondary", "dark:text-primary");
+
       } else {
-        item.classList.remove("border-primary/30");
-        item.classList.add("border-base-300");
+        // Abriendo...
+        answer.style.maxHeight = answer.scrollHeight + "px";
+        answer.style.opacity = "1";
+        // Gira 45 grados (Plus -> X)
+        if (icon) icon.style.transform = "rotate(45deg)";
+
+        // Añadir clases de color activo (Respeta la regla light/dark)
+        question.classList.add("text-secondary", "dark:text-primary");
+        number.classList.add("text-secondary", "dark:text-primary");
+        icon.classList.add("text-secondary", "dark:text-primary");
       }
     });
   });
 </script>
+
+<style is:global>
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out both;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

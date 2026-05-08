@@ -1,0 +1,100 @@
+---
+import { Rocket, Sparkles } from "@lucide/astro";
+---
+
+<!--
+  Orbe Flotante Exótico
+  El objetivo: Llamar la atención de inmediato y redirigir a /landing
+-->
+<a
+  href="/landing"
+  id="exotic-floating-badge"
+  class="group fixed bottom-8 left-8 z-50 flex items-center h-16 w-16 overflow-hidden rounded-full bg-linear-to-r from-primary via-secondary to-primary bg-size-[200%_auto] text-white shadow-[0_0_30px_rgba(201,168,76,0.5)] transition-all duration-500 ease-out hover:w-64 hover:shadow-[0_0_50px_rgba(201,168,76,0.9)] hover:scale-105 border border-white/20 dark:border-white/10"
+>
+  <!-- Halo pulsante de fondo para el modo 'orbe' -->
+  <div
+    class="absolute inset-0 rounded-full animate-ping opacity-30 bg-secondary group-hover:opacity-0 transition-opacity duration-300"
+  >
+  </div>
+
+  <!-- Contenedor del ícono (siempre visible, centrado cuando está colapsado, a la izquierda cuando se expande) -->
+  <div
+    class="absolute left-0 top-0 flex h-16 w-16 items-center justify-center transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110"
+  >
+    <Sparkles
+      class="h-7 w-7 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] animate-pulse"
+    />
+  </div>
+
+  <!-- Texto revelado al hacer hover -->
+  <div
+    class="ml-16 flex w-full whitespace-nowrap opacity-0 transition-all duration-500 group-hover:opacity-100 items-center pr-6"
+  >
+    <span
+      class="font-bold text-lg tracking-wide bg-clip-text text-transparent bg-linear-to-r from-white to-white/80"
+    >
+      ¡Lanza tu Página!
+    </span>
+    <Rocket class="ml-2 h-5 w-5" />
+  </div>
+
+  <!-- Efecto de brillo rotatorio -->
+  <div
+    class="absolute inset-0 bg-linear-to-tr from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-[spin_4s_linear_infinite] pointer-events-none rounded-full blur-md"
+  >
+  </div>
+</a>
+
+<style>
+  /* Animación continua del fondo para hacerlo más exótico */
+  @keyframes gradientFlow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  #exotic-floating-badge {
+    animation:
+      gradientFlow 3s ease infinite,
+      float 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Para que no se sobreponga al hover scale */
+  #exotic-floating-badge:hover {
+    animation: gradientFlow 1.5s ease infinite; /* Se acelera al hacer hover, pero pierde el float por el transform scale */
+  }
+</style>
+
+<script>
+  import { animate, spring } from "motion";
+
+  // Aparece de forma exótica y rebotando al cargar la página
+  const badge = document.getElementById("exotic-floating-badge");
+  if (badge) {
+    animate(
+      badge,
+      { y: [100, 0], opacity: [0, 1], scale: [0.5, 1] },
+      {
+        duration: 1.2,
+        delay: 1.5, // Aparece unos segundos después para sorprender
+        easing: spring({ stiffness: 100, damping: 10 }),
+      }
+    );
+  }
+</script>
