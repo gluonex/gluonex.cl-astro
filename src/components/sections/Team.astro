@@ -66,6 +66,7 @@ const team = [
         team.map((member) => (
           <div
             tabindex="0"
+            data-member={member.slug}
             class="group relative flex-1 hover:flex-[4] focus-within:flex-[4] transition-[flex] duration-700 ease-out overflow-hidden rounded-2xl cursor-pointer"
           >
             <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
@@ -130,4 +131,41 @@ const team = [
       }
     </div>
   </div>
+
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", function () {
+      const alvaroCard = document.querySelector('[data-member="alvaro"]');
+      if (!alvaroCard) return;
+
+      const audio = new Audio("/phonk.mp3");
+      audio.loop = true;
+      let audioUnlocked = false;
+
+      // Unlock audio on first user click (required by browser autoplay policy)
+      function unlockAudio() {
+        if (audioUnlocked) return;
+        audio
+          .play()
+          .then(function () {
+            audio.pause();
+            audio.currentTime = 0;
+            audioUnlocked = true;
+          })
+          .catch(function () {});
+      }
+
+      document.addEventListener("click", unlockAudio, { once: true });
+
+      alvaroCard.addEventListener("mouseenter", function () {
+        if (!audioUnlocked) return;
+        audio.currentTime = 0;
+        audio.play().catch(function () {});
+      });
+
+      alvaroCard.addEventListener("mouseleave", function () {
+        audio.pause();
+        audio.currentTime = 0;
+      });
+    });
+  </script>
 </section>
