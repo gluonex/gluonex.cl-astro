@@ -1,7 +1,6 @@
 ---
 import "../styles/globals.css";
 import ThemeToggle from "../components/ThemeToggle.astro";
-import FloatingServiceBadge from "../components/FloatingServiceBadge.astro";
 
 interface Props {
   title?: string;
@@ -57,7 +56,6 @@ const {
   </head>
   <body class="min-h-full flex flex-col">
     <slot />
-    <FloatingServiceBadge />
     <ThemeToggle />
   </body>
 </html>

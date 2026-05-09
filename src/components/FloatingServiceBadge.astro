@@ -1,99 +1,114 @@
 ---
-import { Rocket, Sparkles } from "@lucide/astro";
+import { Rocket } from "@lucide/astro";
 ---
 
-<!--
-  Orbe Flotante Exótico
-  El objetivo: Llamar la atención de inmediato y redirigir a /landing
--->
 <a
   href="/landing"
-  id="exotic-floating-badge"
-  class="group fixed bottom-8 left-8 z-50 flex items-center h-16 w-16 overflow-hidden rounded-full bg-linear-to-r from-primary via-secondary to-primary bg-size-[200%_auto] text-white shadow-[0_0_30px_rgba(201,168,76,0.5)] transition-all duration-500 ease-out hover:w-64 hover:shadow-[0_0_50px_rgba(201,168,76,0.9)] hover:scale-105 border border-white/20 dark:border-white/10"
+  id="premium-floating-badge"
+  class="fixed bottom-6 left-1/2 -translate-x-1/2 md:bottom-8 md:left-8 md:translate-x-0 z-50 group flex items-center"
 >
-  <!-- Halo pulsante de fondo para el modo 'orbe' -->
+  <!-- ============================================== -->
+  <!-- 1. Glow Ambiental (Sombra de luz proyectada)   -->
+  <!-- ============================================== -->
   <div
-    class="absolute inset-0 rounded-full animate-ping opacity-30 bg-secondary group-hover:opacity-0 transition-opacity duration-300"
+    class="absolute inset-0 bg-secondary/30 dark:bg-primary/30 blur-xl rounded-full group-hover:scale-125 group-hover:bg-secondary/50 dark:group-hover:bg-primary/50 transition-all duration-500 opacity-70"
   >
   </div>
 
-  <!-- Contenedor del ícono (siempre visible, centrado cuando está colapsado, a la izquierda cuando se expande) -->
+  <!-- ============================================== -->
+  <!-- 2. La Píldora de Cristal (Glassmorphism)       -->
+  <!-- ============================================== -->
   <div
-    class="absolute left-0 top-0 flex h-16 w-16 items-center justify-center transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110"
+    class="relative flex items-center gap-3 px-2 py-2 pr-6 bg-white/70 dark:bg-base-100/70 backdrop-blur-xl border border-secondary/30 dark:border-primary/30 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] group-hover:border-secondary/60 dark:group-hover:border-primary/60 group-hover:-translate-y-1 transition-all duration-300 overflow-hidden"
   >
-    <Sparkles
-      class="h-7 w-7 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] animate-pulse"
-    />
-  </div>
-
-  <!-- Texto revelado al hacer hover -->
-  <div
-    class="ml-16 flex w-full whitespace-nowrap opacity-0 transition-all duration-500 group-hover:opacity-100 items-center pr-6"
-  >
-    <span
-      class="font-bold text-lg tracking-wide bg-clip-text text-transparent bg-linear-to-r from-white to-white/80"
+    <!-- Shimmer Effect (Reflejo de luz al hacer hover) -->
+    <div
+      class="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-linear-to-r from-transparent via-white/50 dark:via-white/10 to-transparent transition-transform duration-1000 ease-in-out"
     >
-      ¡Lanza tu Página!
-    </span>
-    <Rocket class="ml-2 h-5 w-5" />
-  </div>
+    </div>
 
-  <!-- Efecto de brillo rotatorio -->
-  <div
-    class="absolute inset-0 bg-linear-to-tr from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-[spin_4s_linear_infinite] pointer-events-none rounded-full blur-md"
-  >
+    <!-- Contenedor del Icono animado -->
+    <div
+      class="relative flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary dark:bg-primary shrink-0 transition-transform duration-300 group-hover:scale-105 shadow-inner"
+    >
+      <Rocket
+        class="w-4 h-4 md:w-5 md:h-5 text-white dark:text-base-100 group-hover:animate-rocket-shake"
+      />
+
+      <!-- Mini radar/pulso saliendo del icono -->
+      <div
+        class="absolute inset-0 rounded-full border border-secondary dark:border-primary animate-ping opacity-20"
+      >
+      </div>
+    </div>
+
+    <!-- Textos y Estado -->
+    <div class="flex flex-col justify-center">
+      <div class="flex items-center gap-1.5 mb-0.5">
+        <!-- Indicador de estado (Punto de luz) -->
+        <span class="relative flex h-1.5 w-1.5">
+          <span
+            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"
+          ></span>
+          <span
+            class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"
+          ></span>
+        </span>
+        <span
+          class="text-[9px] font-bold uppercase tracking-widest text-base-content/50 leading-none mt-px"
+        >
+          Cupos Disponibles
+        </span>
+      </div>
+
+      <span
+        class="font-bold text-sm md:text-base text-base-content whitespace-nowrap tracking-tight leading-none group-hover:text-secondary dark:group-hover:text-primary transition-colors"
+      >
+        ¡Lanza tu Página!
+      </span>
+    </div>
   </div>
 </a>
 
 <style>
-  /* Animación continua del fondo para hacerlo más exótico */
-  @keyframes gradientFlow {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  #exotic-floating-badge {
-    animation:
-      gradientFlow 3s ease infinite,
-      float 4s ease-in-out infinite;
-  }
-
-  @keyframes float {
+  /* Animación sutil para el cohete en hover */
+  @keyframes rocket-shake {
     0%,
     100% {
-      transform: translateY(0px);
+      transform: translateY(0) rotate(0);
+    }
+    25% {
+      transform: translateY(-2px) rotate(-5deg);
     }
     50% {
-      transform: translateY(-10px);
+      transform: translateY(0) rotate(5deg);
+    }
+    75% {
+      transform: translateY(-2px) rotate(-5deg);
     }
   }
-
-  /* Para que no se sobreponga al hover scale */
-  #exotic-floating-badge:hover {
-    animation: gradientFlow 1.5s ease infinite; /* Se acelera al hacer hover, pero pierde el float por el transform scale */
+  .animate-rocket-shake {
+    animation: rocket-shake 0.5s ease-in-out infinite;
   }
 </style>
 
 <script>
-  import { animate, spring } from "motion";
+  import { animate } from "motion";
 
-  // Aparece de forma exótica y rebotando al cargar la página
-  const badge = document.getElementById("exotic-floating-badge");
+  // Entrada elegante y profesional (Fade in + Slide Up)
+  const badge =
+    typeof document !== "undefined"
+      ? document.getElementById("premium-floating-badge")
+      : null;
+
   if (badge) {
-    animate(
-      badge,
-      { y: [100, 0], opacity: [0, 1], scale: [0.5, 1] },
+    (animate as any)(
+      badge as any,
+      { y: [50, 0], opacity: [0, 1] },
       {
-        duration: 1.2,
-        delay: 1.5, // Aparece unos segundos después para sorprender
-        easing: spring({ stiffness: 100, damping: 10 }),
+        duration: 0.8,
+        delay: 1.2,
+        easing: [0.22, 1, 0.36, 1], // Easing de "resorte" suave
       }
     );
   }

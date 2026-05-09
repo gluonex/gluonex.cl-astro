@@ -41,12 +41,12 @@ import LandingFAQ from "../components/landing/LandingFAQ.astro";
           </p>
         </div>
         <a
-          href="https://wa.me/56973789128?text=Hola%20GluonEX%2C%20quiero%20cotizar%20una%20Landing%20Page."
+          href="https://wa.me/56973789128?text=Hola%20GluonEX%2C%20quiero%20contratar%20el%20servicio%20de%20Landing%20Page%20por%20%24119.990%20%2B%20IVA."
           target="_blank"
           rel="noopener noreferrer"
           class="bg-secondary dark:bg-primary text-white px-6 py-3 rounded-xl font-bold text-sm hover:scale-105 transition-transform shadow-lg shrink-0"
         >
-          Cotizar Ahora →
+          Contratar →
         </a>
       </div>
     </div>
@@ -86,8 +86,8 @@ import LandingFAQ from "../components/landing/LandingFAQ.astro";
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          animate(
-            entry.target as Element,
+          (animate as any)(
+            entry.target as any,
             { opacity: [0, 1], y: [20, 0] },
             { duration: 0.8, easing: "ease-out" }
           );

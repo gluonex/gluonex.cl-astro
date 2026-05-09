@@ -7,6 +7,7 @@ import Services from "../components/sections/Services.astro";
 import Team from "../components/sections/Team.astro";
 import Contact from "../components/sections/Contact.astro";
 import Footer from "../components/sections/Footer.astro";
+import FloatingServiceBadge from "../components/FloatingServiceBadge.astro";
 ---
 
 <Layout>
@@ -17,6 +18,7 @@ import Footer from "../components/sections/Footer.astro";
     <Services />
     <Team />
     <Contact />
+    <FloatingServiceBadge />
   </main>
   <Footer />
 </Layout>
@@ -28,8 +30,8 @@ import Footer from "../components/sections/Footer.astro";
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          animate(
-            entry.target as Element,
+          (animate as any)(
+            entry.target as any,
             { opacity: [0, 1], y: [20, 0] },
             { duration: 0.8, easing: "ease-out" }
           );
